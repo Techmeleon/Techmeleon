@@ -1,0 +1,24 @@
+.nav {
+    display: none;
+    @include respond('ipadPro') {
+        display: flex !important;
+    }
+    &__contact {
+        display: none;
+        @include respond('ipadPro') {
+            display: block !important;
+        }
+    }
+    &__toggle {
+        display: block;
+        @include respond('ipadPro') {
+            display: none !important;
+        }
+    }
+    &__home {
+        font-size: 2.1rem;
+        @include respond('ipadPro') {
+            font-size: 1.6rem !important;
+        }
+    }
+}

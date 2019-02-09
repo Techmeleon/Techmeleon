@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Techmeleon';
+    src: url('tm-bold.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Techmeleon';
+    src: url('tm-bold.otf') format('opentype');
+    font-weight: 300;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: 'Techmeleon';
+    src: url('tm-light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}

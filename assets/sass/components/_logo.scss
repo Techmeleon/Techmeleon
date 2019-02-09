@@ -1,0 +1,19 @@
+.logo {
+    position: absolute;
+    top: 7rem;
+    overflow: hidden;
+    width: 200px;
+    height: auto;
+    &.right {
+        right: 0;
+        opacity: 0.3;
+        transform: translateX(65%);
+    }
+    &.left {
+        left: 0;
+        transform: translateX(-35%);
+    }
+    @include respond('ipad') {
+        width: 400px;
+    }
+}
