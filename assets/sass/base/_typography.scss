@@ -3,7 +3,7 @@
 /* ------------------ */
 
 body {
-    font-family: 'Roboto', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    font-family: 'Lato', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
         'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-feature-settings: 'liga' 0;
     font-weight: 300;
@@ -11,45 +11,38 @@ body {
     font-size: 1.6rem;
 }
 
-/* ------------------ */
-
-/* h1 heading primary */
-
-h1 {
+.header__big {
+    font-family: 'Techmeleon', 'Lato', sans-serif;
     font-weight: 300;
-    font-family: 'Techmeleon';
+    font-size: 5rem;
+    @include respond('ipad') {
+        font-size: 7rem;
+    }
 }
 
-/* ------------------ */
-
-/* h2 heading secondary */
-
-h2 {
+.header__statement {
+    font-family: 'Techmeleon', 'Lato', sans-serif;
     font-weight: 300;
-    font-family: 'Techmeleon';
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    @include respond('ipad') {
+        font-size: 2.5rem;
+        margin-bottom: 4rem;
+    }
 }
 
-/* ------------------ */
+.header__summary {
+    font-weight: 300;
+    font-size: 2rem;
+}
 
-/* h2 heading secondary */
-
-h3 {
-    font-family: 'Techmeleon';
+.header__title {
+    font-family: 'Techmeleon', 'Lato', sans-serif;
     font-weight: bold;
     font-size: 5rem;
-    line-height: 4.5rem;
+    line-height: 5rem;
     margin-bottom: 2rem;
 }
-// background-image: linear-gradient(
-//         rgba($color-background-dark, 0.99),
-//         rgba($color-background-dark, 0.99)
-//     ),
-//     url('~static/background.jpg');
-// background-repeat: no-repeat;
-// background-attachment: fixed;
-// background-position: center;
-// background-size: 100vh;
-/* ------------------ */
 
 .biglink {
     font-size: 7rem;
@@ -67,4 +60,11 @@ h3 {
     left: none !important;
     font-size: 7rem !important;
     font-weight: bold !important;
+}
+
+.service,
+.header {
+    &__caption {
+        font-family: 'Techmeleon', 'Lato', sans-serif;
+    }
 }

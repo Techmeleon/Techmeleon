@@ -16,6 +16,7 @@
                 :open="nav.open"
                 @toggle="nav.open = !nav.open"
             />
+            <Gackie />
             <nuxt />
         </div>
     </div>
@@ -27,6 +28,7 @@ import NavContact from '~/components/nav/nav-contact'
 import NavToggle from '~/components/nav/nav-toggle'
 import NavSlide from '~/components/nav/nav-slide'
 import Transition from '~/components/transition'
+import Gackie from '~/components/gackie/gackie'
 
 export default {
     components: {
@@ -35,7 +37,8 @@ export default {
         NavContact,
         NavToggle,
         NavSlide,
-        Transition
+        Transition,
+        Gackie
     },
     data() {
         return {

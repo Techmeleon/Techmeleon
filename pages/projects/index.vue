@@ -1,8 +1,6 @@
 <template>
     <main class="page">
         <Header :title="title" :caption="caption" :summary="summary" />
-
-        <div class="u-temp next-section" />
         <app-footer class="next-page" :next-page="{title: 'Who', link: '/about'}" />
     </main>
 </template>

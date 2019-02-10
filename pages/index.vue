@@ -4,8 +4,8 @@
             <Logo class="logo right" />
             <section class="hero">
                 <img src="~/assets/logo/Logo.svg" alt="logo" class="hero__logo">
-                <h1><Techmeleon class="techmeleon" /></h1>
-                <h2 class="statement">
+                <h1><Techmeleon class="header__big" /></h1>
+                <h2 class="header__statement">
                     Using the right technology<br>to enhance your business<br>
                 </h2>
             </section>
@@ -64,8 +64,13 @@ export default {
                 typeof e.clientX !== 'undefined' ||
                 typeof e.touches[0] !== 'undefined'
             ) {
-                this.x = e.clientX || e.touches[0].clientX
-                this.y = e.clientY || e.touches[0].clientY
+                if (typeof e.clientX !== 'undefined') {
+                    this.x = e.clientX
+                    this.y = e.clientY
+                } else if (typeof e.touches[0] !== 'undefined') {
+                    this.x = e.touches[0].clientX
+                    this.y = e.touches[0].clientY
+                }
             }
         }
     }
@@ -95,24 +100,6 @@ export default {
         transform: translate(-50%, -50%);
         text-align: center;
         width: 50rem;
-    }
-
-    & .techmeleon {
-        font-size: 5rem;
-
-        @include respond('ipad') {
-            font-size: 7rem;
-        }
-    }
-
-    & .statement {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-
-        @include respond('ipad') {
-            font-size: 2.5rem;
-            margin-bottom: 4rem;
-        }
     }
 
     &__logo {

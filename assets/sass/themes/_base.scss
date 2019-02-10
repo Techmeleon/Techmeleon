@@ -1,8 +1,4 @@
 // Theme update here. If just changing colors, should be identical across themes
-h3 {
-    color: $color-primary;
-}
-
 a {
     &:link,
     &:visited {
@@ -97,4 +93,19 @@ a {
 
 .boom {
     background-color: $color-background;
+}
+
+.header__title {
+    color: $color-primary;
+}
+
+.contact {
+    &__section {
+        &:after {
+            background-color: $color-background;
+        }
+        &:before {
+            background-color: $color-secondary;
+        }
+    }
 }

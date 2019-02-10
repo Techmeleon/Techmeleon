@@ -27,10 +27,13 @@ a {
             height: 100%;
             width: 0;
             top: 0;
-            left: 0;
+            right: 0;
             content: '';
             transition: 0.3s width;
             z-index: -1;
+        }
+        &.right:after {
+            left: 0 !important;
         }
     }
 }

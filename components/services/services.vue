@@ -19,9 +19,9 @@
                         <div class="service__caption u-line-highlight">
                             Adaptable & effective
                         </div>
-                        <h3 class="service__title">
+                        <div class="service__title header__title">
                             <span>{{ service.title }}</span>
-                        </h3>
+                        </div>
                         <div class="service__summary">
                             <span>{{ service.summary }}</span>
                         </div>
@@ -112,7 +112,6 @@ export default {
 
     &__caption {
         margin-bottom: 3rem;
-        font-family: 'Techmeleon';
     }
     &__summary {
         margin-bottom: 3rem;

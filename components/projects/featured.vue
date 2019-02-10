@@ -59,7 +59,7 @@ export default {
                 },
                 {
                     name: 'Swansea Property',
-                    summary: 'The websites is nicer than the properties.',
+                    summary: 'Two websites for Swansea Properties.',
                     bgColor: '#d3b300',
                     color: '#FFFFFF',
                     feature: '/projects/spa/feature.png',

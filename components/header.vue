@@ -3,22 +3,22 @@
         <Logo class="logo left" :x="x" :y="y" :activate-the-eye="true" />
 
         <div class="header__container">
-            <div class="header__caption u-line-highlight">
+            <div v-if="caption !== ''" class="header__caption u-line-highlight">
                 <span>{{ caption }}</span>
             </div>
 
-            <h3 class="header__title">
+            <h1 class="header__title">
                 <span>{{ title }}</span>
-            </h3>
-            <div class="header__summary">
+            </h1>
+            <h2 class="header__summary">
                 <span>{{ summary }}</span>
-            </div>
-
+            </h2>
+            <slot />
         </div>
         <div class="under-construction bottom">
             Our website is currently under construction while we prioritise clients.
         </div>
-        <app-scroll-to el=".next-section" />
+        <app-scroll-to v-show="next" el=".next-section" />
     </section>
 </template>
 
@@ -31,7 +31,8 @@ export default {
     props: {
         caption: {
             type: String,
-            required: true
+            required: false,
+            default: ''
         },
         title: {
             type: String,
@@ -40,6 +41,11 @@ export default {
         summary: {
             type: String,
             required: true
+        },
+        next: {
+            type: Boolean,
+            required: false,
+            default: true
         }
     },
     data() {
@@ -83,6 +89,11 @@ export default {
         font-size: 2rem;
     }
 
+    &__title {
+        font-size: 5rem;
+        line-height: 4.5rem;
+        margin-bottom: 2rem;
+    }
     &__caption {
         margin-bottom: 3rem;
     }
