@@ -21,8 +21,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            height: 10rem;
-            width: 10rem;
+            height: 6rem;
+            width: 6rem;
             z-index: 50;
         }
     }
@@ -34,80 +34,80 @@
                 visibility: visible;
             }
         }
-    }
-}
-
-.scan {
-    &-leave-active {
-        transition: 1s width;
-        &:after {
-            transition: 1s width;
-        }
-    }
-    &-enter-active {
-        transition: 1s width;
-        &:after {
-            transition: 1s width;
-        }
-    }
-    &-leave-active,
-    &-enter {
-        &:after {
-            width: 100% !important;
+        & .loader {
+            opacity: 1;
+            visibility: visible;
         }
     }
 }
 
-.slide {
-    &-enter {
-        &-active {
-            animation: slide-in 10s ease-out forwards;
-        }
+.loader {
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transition: 1s all;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 10rem;
+    width: 10rem;
+    &__container {
+        position: relative;
+        height: 100%;
+        width: 100%;
     }
-    &-leave {
-        &-active {
-            animation: slide-out 10s ease-out forwards;
-        }
+    &__circle {
+        animation: rotate 2s linear infinite;
+        transform-origin: center center;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    &__path {
+        stroke-dasharray: 150, 200;
+        stroke-dashoffset: -10;
+        animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+        stroke-linecap: round;
     }
 }
 
-@keyframes slide-in {
-    from {
-        transform: translateY(20px);
-    }
-    to {
-        transform: translateY(0);
+@keyframes rotate {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
     }
 }
 
-@keyframes slide-out {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(20px);
-    }
-}
-
-@keyframes scanner {
+@keyframes dash {
     0% {
-        transform: scale(0);
-        opacity: 1;
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
     }
-    65% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    85% {
-        transform: translateX(8px);
-        opacity: 0;
-    }
-    95% {
-        transform: translateX(-8px);
-        opacity: 0;
+    50% {
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -35;
     }
     100% {
-        opacity: 1;
-        transform: translateX(0);
+        stroke-dasharray: 89, 200;
+        stroke-dashoffset: -124;
+    }
+}
+
+@keyframes color {
+    0% {
+        stroke: #00ffd5;
+    }
+    40% {
+        stroke: #ff9100;
+    }
+    66% {
+        stroke: #00ffd5;
+    }
+    80%,
+    90% {
+        stroke: #ff9100;
     }
 }

@@ -6,7 +6,6 @@
     >
         <nuxt-link
             v-for="nav in navlinks.others"
-            v-show="nav.show"
             :key="nav.path"
             class="nav__slide__link"
             :to="nav.path"

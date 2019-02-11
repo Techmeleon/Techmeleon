@@ -1,5 +1,3 @@
-const pkg = require('./package')
-
 module.exports = {
     mode: 'universal',
 
@@ -49,6 +47,7 @@ module.exports = {
         beforeLeave(el) {
             const boom = document.getElementsByClassName('app')[0]
             boom.classList.add('transition')
+            boom.classList.remove('loaded')
         },
         leave(el, done) {
             setTimeout(() => {
@@ -69,6 +68,7 @@ module.exports = {
             setTimeout(() => {
                 if (typeof boom !== 'undefined') {
                     boom.classList.remove('transition')
+                    boom.classList.add('loaded')
                 }
             }, 750)
         }

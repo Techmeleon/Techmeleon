@@ -1,6 +1,6 @@
 <template>
     <div :class="theme">
-        <div class="app">
+        <div class="app transition">
             <Transition />
             <div class="navigation" :class="{hide: nav.hide.now && !nav.open}">
                 <NavHome />
@@ -52,29 +52,24 @@ export default {
                 navlinks: {
                     home: {
                         name: 'Home',
-                        path: '/',
-                        show: true
+                        path: '/'
                     },
                     others: [
                         {
                             name: 'Projects',
-                            path: '/projects',
-                            show: true
+                            path: '/projects'
                         },
                         {
                             name: 'Services',
-                            path: '/services',
-                            show: true
+                            path: '/services'
                         },
                         {
                             name: 'Who',
-                            path: '/about',
-                            show: true
+                            path: '/about'
                         }
                     ],
                     contact: {
-                        name: 'Contact',
-                        show: true
+                        name: 'Contact'
                     }
                 }
             }
@@ -82,6 +77,15 @@ export default {
     },
     mounted() {
         window.onscroll = this.hideOnScroll
+        window.addEventListener(
+            'load',
+            function() {
+                const boom = document.getElementsByClassName('app')[0]
+                boom.classList.remove('transition')
+                boom.classList.add('loaded')
+            },
+            false
+        )
     },
     methods: {
         hideOnScroll() {
