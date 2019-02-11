@@ -1,10 +1,14 @@
 <template>
-    <div class="warnings">
+    <div
+        v-show="hideWarningMain"
+        class="warnings"
+    >
         <div
             v-for="(warning, windex) in warnings"
+            v-show="!warning.hide"
             :key="warning.name"
             class="warnings__warning"
-            :class="{'hide': warning.hide, [warning.name]: true}"
+            :class="{[warning.name]: true}"
         >
             <div
                 class="warnings__text"
@@ -69,6 +73,17 @@ export default {
             ]
         }
     },
+    computed: {
+        hideWarningMain() {
+            let count = 0
+            this.warnings.forEach(element => {
+                if (element.hide === false) {
+                    count += 1
+                }
+            })
+            return count >= 0
+        }
+    },
     watch: {
         $route(to, from) {
             if (to.path === '/policies/cookie-policy') {
@@ -88,6 +103,7 @@ export default {
     methods: {
         gaCheck() {
             if (this.googleAnalyticsID) {
+                console.log('cookie: ' + this.getCookie('cookiePolicy')) //eslint-disable-line
                 if (this.getCookie('cookiePolicy') === 'accepted') {
                     this.$ga.enable()
                 } else {

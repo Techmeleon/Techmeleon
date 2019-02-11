@@ -14,13 +14,14 @@
         transition: transform 1s;
         transition-timing-function: ease-in-out;
         &__logo {
+            transform-origin: 0 0;
+            transition: 1s all;
             opacity: 0;
             visibility: hidden;
-            transition: 1s all;
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: scale(0.5) translate(-50%, -50%);
             height: 6rem;
             width: 6rem;
             z-index: 50;
@@ -29,7 +30,9 @@
     &.transition {
         & .boom {
             transform: scale(2) translate(-50%, -50%);
+
             &__logo {
+                transform: scale(1) translate(-50%, -50%);
                 opacity: 1;
                 visibility: visible;
             }
@@ -46,6 +49,7 @@
     opacity: 0;
     visibility: hidden;
     transition: 1s all;
+    transform-origin: 0 0;
     position: fixed;
     top: 50%;
     left: 50%;

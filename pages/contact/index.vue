@@ -45,7 +45,7 @@
                             </a>
                         </div> -->
                         <div class="contact__email">
-                            <a href="mailto">
+                            <a href="mailto:hello@techmeleon.co.uk?Subject=Quick%20Chat">
                                 <font-awesome-icon icon="envelope-open" />  hello@techmeleon.co.uk
                             </a>
                         </div>
