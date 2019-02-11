@@ -68,7 +68,7 @@ export default {
                 },
                 {
                     name: 'Marketing',
-                    tag: 'Targetted & effective',
+                    tag: 'Targeted & effective',
                     title: 'Digital Marketing',
                     summary:
                         'Leveraging SEO, social media and online marketing we can increase your leads.'
