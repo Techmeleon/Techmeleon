@@ -17,7 +17,7 @@
                 >
                     <div class="service__content">
                         <div class="service__caption u-line-highlight">
-                            Adaptable & effective
+                            <span>{{ service.tag }}</span>
                         </div>
                         <div class="service__title header__title">
                             <span>{{ service.title }}</span>
@@ -47,36 +47,42 @@ export default {
             services: [
                 {
                     name: 'Solve',
+                    tag: 'Adaptable & Effective',
                     title: 'Business Solutions',
                     summary:
                         'We can analyse your business to provide the most cost effective and efficient solutions.'
                 },
                 {
                     name: 'Design',
+                    tag: 'Websites & Branding',
                     title: 'Creative Design',
                     summary:
                         'Partnering with you to create exciting, memorible & meaningful experiences.'
                 },
                 {
                     name: 'Apps',
+                    tag: 'Time & Cost Saving',
                     title: 'App Development',
                     summary:
                         'Build cost efficient apps to enhance your business and increase accuracy & transparency.'
                 },
                 {
                     name: 'Marketing',
+                    tag: 'Targetted & effective',
                     title: 'Digital Marketing',
                     summary:
                         'Leveraging SEO, social media and online marketing we can increase your leads.'
                 },
                 {
                     name: 'Clarity',
+                    tag: 'Transparent & Essential',
                     title: 'Data Clarity',
                     summary:
                         'Transforming data into meaningful, business driven & decisioning making paths.'
                 },
                 {
                     name: 'Cloud',
+                    tag: 'Stable & Efficent',
                     title: 'Cloud Migration',
                     summary:
                         'Futurproofing your business with flexible, scalable and most importantly secure cloud systems.'
