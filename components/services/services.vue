@@ -40,10 +40,6 @@ export default {
     data() {
         return {
             showCarousel: false,
-            caroSizes: {
-                width: 500,
-                height: 500
-            },
             services: [
                 {
                     name: 'Solve',
@@ -54,7 +50,7 @@ export default {
                 },
                 {
                     name: 'Design',
-                    tag: 'Websites & Branding',
+                    tag: 'Website & Branding',
                     title: 'Creative Design',
                     summary:
                         'Partnering with you to create exciting, memorible & meaningful experiences.'
