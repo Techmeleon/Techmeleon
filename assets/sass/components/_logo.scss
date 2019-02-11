@@ -4,16 +4,36 @@
     overflow: hidden;
     width: 200px;
     height: auto;
+    transition: 1s all;
+    @include respond('ipad') {
+        width: 400px;
+    }
+
     &.right {
-        right: 0;
         opacity: 0.3;
-        transform: translateX(65%);
+        right: 0;
+        transform: translateX(100%) rotate(180deg);
+        transition: rotate 1.5s, translate 1s;
     }
     &.left {
         left: 0;
-        transform: translateX(-35%);
+        transform: translateX(-200%) rotate(-180deg);
+        transition: rotate 1.5s, translate 1s;
+        opacity: 0.3;
     }
-    @include respond('ipad') {
-        width: 400px;
+}
+
+.loaded {
+    & .logo {
+        &.in-viewport {
+            &.left {
+                transform: translateX(-35%);
+                opacity: 1;
+            }
+            &.right {
+                transform: translateX(65%);
+                opacity: 0.3;
+            }
+        }
     }
 }

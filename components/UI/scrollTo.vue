@@ -67,6 +67,7 @@ export default {
     will-change: transform;
     overflow: hidden;
     margin-top: 50%;
+    position: relative;
 
     &.invert {
         transform: rotate(180deg);

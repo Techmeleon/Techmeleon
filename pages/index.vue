@@ -27,7 +27,7 @@
             <Featured />
         </section>
 
-        <app-footer class="next-page" :next-page="{title: 'Services', link: '/services'}" />
+        <app-footer class="next-page" :next-page="{title: 'Solutions', link: '/services'}" />
     </main>
 </template>
 

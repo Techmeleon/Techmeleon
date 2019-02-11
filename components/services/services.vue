@@ -7,6 +7,7 @@
                 :inverse-scaling="1600"
                 :space="800"
                 :controls-visible="true"
+                dir="ltr"
                 class="services"
             >
                 <slide
