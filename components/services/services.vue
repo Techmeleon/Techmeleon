@@ -1,6 +1,6 @@
 <template>
     <div v-show="showCarousel">
-        <no-ssr>
+        <no-ssr>        
             <carousel-3d
                 :width="500"
                 :height="800"
@@ -21,17 +21,38 @@
                             <span>{{ service.tag }}</span>
                         </div>
                         <div class="service__title header__title">
-                            <span>{{ service.title }}</span>
+                            <span>{{ service.name }}</span>
                         </div>
                         <div class="service__summary">
                             <span>{{ service.summary }}</span>
                         </div>
-                        <nuxt-link class="service__link btn" :to="'/services/'+ service.name">
-                            <span>{{ service.name }}</span>
+                        <nuxt-link class="service__link btn" :to="'/services/'+ service.route">
+                            <span>{{ service.short }}</span>
                         </nuxt-link>
                     </div>
                 </slide>
             </carousel-3d>
+            <div
+                v-for="(service, index) in loadServices"
+                :key="index"
+                :index="index"
+                class="service"
+            >
+                <div class="service__content">
+                    <div class="service__caption u-line-highlight">
+                        <span>{{ service.tag }}</span>
+                    </div>
+                    <div class="service__title header__title">
+                        <span>{{ service.name }}</span>
+                    </div>
+                    <div class="service__summary">
+                        <span>{{ service.summary }}</span>
+                    </div>
+                    <nuxt-link class="service__link btn" :to="'/services/'+ service.route">
+                        <span>{{ service.short }}</span>
+                    </nuxt-link>
+                </div>
+            </div>
         </no-ssr>
     </div>
 </template>
@@ -87,7 +108,14 @@ export default {
             ]
         }
     },
+    computed: {
+        loadServices() {
+            console.log(this.$store.getters.services) //eslint-disable-line
+            return this.$store.getters.services
+        }
+    },
     mounted() {
+        // this.services = this.$store.state.services.services
         this.showCarousel = true
     }
 }

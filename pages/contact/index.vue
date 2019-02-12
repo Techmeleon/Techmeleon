@@ -23,9 +23,7 @@
                     <h1 class="header__title contact__title">
                         Begin Project
                     </h1>
-                    <h2 class="header__summary">
-                        <span>We are currently building our booking system. Please select Quick Chat</span>
-                    </h2>
+                    <Contact-form class="contact__form" />
                 </section>
                 <section v-if="sectionNumber === 3" key="3" class="contact__section">
                     <a href="#" class="contact__section__back" @click.prevent="sectionNumber = 1">
@@ -45,7 +43,7 @@
                             </a>
                         </div> -->
                         <div class="contact__email">
-                            <a href="mailto:hello@techmeleon.co.uk?Subject=Quick%20Chat">
+                            <a href="mailto">
                                 <font-awesome-icon icon="envelope-open" />  hello@techmeleon.co.uk
                             </a>
                         </div>
@@ -57,7 +55,11 @@
 </template>
 
 <script>
+import ContactForm from '~/components/contact/form'
 export default {
+    components: {
+        ContactForm
+    },
     data() {
         return {
             welcomeTimeMessage: 'Morning',
@@ -116,6 +118,10 @@ export default {
     &__email {
         font-size: 3rem;
         margin-bottom: 1rem;
+    }
+
+    &__form {
+        margin-top: 4rem;
     }
 
     &__call {

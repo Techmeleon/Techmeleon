@@ -1,6 +1,5 @@
 module.exports = {
     mode: 'universal',
-
     /*
   ** Headers of the page
   */
@@ -16,7 +15,7 @@ module.exports = {
                 hid: 'description',
                 name: 'description',
                 content:
-                    'We provide digital solutions to give transparency and decision making information. Give us a call to analyse your business so we can provide the right solution to enhance your business.'
+                    'We provide digital solutions to give creative, transparent and decision making information. Give us a call to analyse your business so we can provide the right solution to enhance your business.'
             }
         ],
         link: [

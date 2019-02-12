@@ -1,0 +1,14 @@
+.contact-form {
+    background-color: $color-primary;
+    border-radius: 1rem;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 90rem;
+    padding: 2rem 3rem;
+    text-align: left;
+    &__section {
+        &__title {
+            font-weight: bold;
+        }
+    }
+}
