@@ -1,6 +1,6 @@
 <template>
     <div v-show="showCarousel">
-        <no-ssr>        
+        <no-ssr>
             <carousel-3d
                 :width="500"
                 :height="800"
@@ -11,7 +11,7 @@
                 class="services"
             >
                 <slide
-                    v-for="(service, index) in services"
+                    v-for="(service, index) in loadServices"
                     :key="index"
                     :index="index"
                     class="service"
@@ -32,27 +32,6 @@
                     </div>
                 </slide>
             </carousel-3d>
-            <div
-                v-for="(service, index) in loadServices"
-                :key="index"
-                :index="index"
-                class="service"
-            >
-                <div class="service__content">
-                    <div class="service__caption u-line-highlight">
-                        <span>{{ service.tag }}</span>
-                    </div>
-                    <div class="service__title header__title">
-                        <span>{{ service.name }}</span>
-                    </div>
-                    <div class="service__summary">
-                        <span>{{ service.summary }}</span>
-                    </div>
-                    <nuxt-link class="service__link btn" :to="'/services/'+ service.route">
-                        <span>{{ service.short }}</span>
-                    </nuxt-link>
-                </div>
-            </div>
         </no-ssr>
     </div>
 </template>
@@ -61,61 +40,15 @@
 export default {
     data() {
         return {
-            showCarousel: false,
-            services: [
-                {
-                    name: 'Solve',
-                    tag: 'Adaptable & Effective',
-                    title: 'Business Solutions',
-                    summary:
-                        'We can analyse your business to provide the most cost effective and efficient solutions.'
-                },
-                {
-                    name: 'Design',
-                    tag: 'Website & Branding',
-                    title: 'Creative Design',
-                    summary:
-                        'Partnering with you to create exciting, memorible & meaningful experiences.'
-                },
-                {
-                    name: 'Apps',
-                    tag: 'Time & Cost Saving',
-                    title: 'App Development',
-                    summary:
-                        'Build cost efficient apps to enhance your business and increase accuracy & transparency.'
-                },
-                {
-                    name: 'Marketing',
-                    tag: 'Targeted & effective',
-                    title: 'Digital Marketing',
-                    summary:
-                        'Leveraging SEO, social media and online marketing we can increase your leads.'
-                },
-                {
-                    name: 'Clarity',
-                    tag: 'Transparent & Essential',
-                    title: 'Data Clarity',
-                    summary:
-                        'Transforming data into meaningful, business driven & decisioning making paths.'
-                },
-                {
-                    name: 'Cloud',
-                    tag: 'Stable & Efficent',
-                    title: 'Cloud Migration',
-                    summary:
-                        'Futurproofing your business with flexible, scalable and most importantly secure cloud systems.'
-                }
-            ]
+            showCarousel: false
         }
     },
     computed: {
         loadServices() {
-            console.log(this.$store.getters.services) //eslint-disable-line
-            return this.$store.getters.services
+            return this.$store.state.services.list
         }
     },
     mounted() {
-        // this.services = this.$store.state.services.services
         this.showCarousel = true
     }
 }

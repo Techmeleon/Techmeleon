@@ -133,7 +133,7 @@ export default {
     computed: {
         eyeMoveX() {
             /* eslint-disable */
-            const max = 4.5
+            const max = 3.5
             if (this.x >= this.eyeX) {
                 return (
                     (
@@ -152,7 +152,7 @@ export default {
             }
         },
         eyeMoveY() {
-            const max = 4.5
+            const max = 3.5
             if (this.y - this.eyeY >= this.viewY) {
                 return max + 'px'
             }

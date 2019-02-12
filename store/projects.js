@@ -7,11 +7,17 @@ const mutations = {}
 const actions = {}
 
 const getters = {
-    service: state => {
+    project: state => {
         return keyword =>
-            state.services.filter(item => {
+            state.list.projects.filter(item => {
                 return item.route === keyword
             })
+    },
+    front(state) {
+        return state.list.filter(item => {
+            console.log(item) //eslint-disable-line
+            return item.category === 'Featured'
+        })
     }
 }
 

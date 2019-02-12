@@ -57,15 +57,34 @@ export default {
     mounted() {
         document.addEventListener('mousemove', this.coords)
         document.addEventListener('touchstart', this.coords)
+        document.addEventListener('touchmove', this.coords)
+        document.addEventListener('touchend', this.coords)
+        document.addEventListener('scroll', this.coords)
     },
     destroyed() {
         document.removeEventListener('mousemove', this.coords)
         document.removeEventListener('touchstart', this.coords)
+        document.removeEventListener('touchmove', this.coords)
+        document.removeEventListener('touchend', this.coords)
+        document.removeEventListener('scroll', this.coords)
     },
     methods: {
         coords(e) {
-            this.x = e.clientX || e.touches[0].clientX
-            this.y = e.clientY || e.touches[0].clientY
+            if (e.type === 'mousemove') {
+                if (!isNaN(e.clientX) && !isNaN(e.clientY)) {
+                    this.x = e.clientX
+                    this.y = e.clientY
+                }
+            }
+            if (e.type === 'touchstart' || e.type === 'touchmove') {
+                if (
+                    !isNaN(e.touches[0].clientX) &&
+                    !isNaN(e.touches[0].clientY)
+                ) {
+                    this.x = e.touches[0].clientX
+                    this.y = e.touches[0].clientY
+                }
+            }
         }
     }
 }

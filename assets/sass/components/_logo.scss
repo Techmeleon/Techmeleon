@@ -1,25 +1,32 @@
 .logo {
     position: absolute;
-    top: 7rem;
     overflow: hidden;
-    width: 200px;
+    top: 0rem;
     height: auto;
     transition: 1s all;
-    @include respond('ipad') {
-        width: 400px;
-    }
 
     &.right {
         opacity: 0.3;
         right: 0;
-        transform: translateX(100%) rotate(180deg);
-        transition: rotate 1.5s, translate 1s;
+        transform: translate(100%, 0%) rotate(180deg);
+        // transition: rotate 1.5s, translate 1s;
+        transition-delay: 1s;
+        width: 200px;
+        top: 7rem;
+        @include respond('ipad') {
+            width: 400px;
+        }
     }
     &.left {
         left: 0;
-        transform: translateX(-200%) rotate(-180deg);
-        transition: rotate 1.5s, translate 1s;
-        opacity: 0.3;
+        transform: translate(-40%, 0%);
+        // transition: rotate 1.5s, translate 1s;
+        opacity: 1;
+        width: 200px;
+        top: 7rem;
+        @include respond('ipad') {
+            width: 400px;
+        }
     }
 }
 
@@ -27,11 +34,11 @@
     & .logo {
         &.in-viewport {
             &.left {
-                transform: translateX(-35%);
+                transform: translate(-40%, 0%);
                 opacity: 1;
             }
             &.right {
-                transform: translateX(65%);
+                transform: translate(65%, 0%);
                 opacity: 0.3;
             }
         }

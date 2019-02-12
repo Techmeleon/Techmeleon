@@ -1,9 +1,8 @@
 <template>
     <main class="page" @mousemove="coords">
         <header class="header">
-            <Logo class="logo right" />
             <section class="hero">
-                <img src="~/assets/logo/Logo.svg" alt="logo" class="hero__logo">
+                <div class="hero__logo"><Logo class="logo" :x="x" :y="y" :activate-the-eye="true"/></div>
                 <h1><Techmeleon class="header__big" /></h1>
                 <h2 class="header__statement">
                     Using the right technology<br>to enhance your business<br>
@@ -47,27 +46,41 @@ export default {
     data() {
         return {
             x: 0,
-            y: 0
+            y: 0,
+            scrollY: 0
+        }
+    },
+    head() {
+        const page = this.$store.getters['pages/page']('Landing')[0]
+        return {
+            titleTemplate: page.pageTitle,
+            meta: page.meta
         }
     },
     mounted() {
         document.addEventListener('mousemove', this.coords)
         document.addEventListener('touchstart', this.coords)
+        document.addEventListener('touchmove', this.coords)
+        console.log(this.page('Landing')[0]) //eslint-disable-line
     },
     destroyed() {
         document.removeEventListener('mousemove', this.coords)
         document.removeEventListener('touchstart', this.coords)
+        document.removeEventListener('touchmove', this.coords)
     },
     methods: {
         coords(e) {
-            if (
-                typeof e.clientX !== 'undefined' ||
-                typeof e.touches[0] !== 'undefined'
-            ) {
-                if (typeof e.clientX !== 'undefined') {
+            if (e.type === 'mousemove') {
+                if (!isNaN(e.clientX) && !isNaN(e.clientY)) {
                     this.x = e.clientX
                     this.y = e.clientY
-                } else if (typeof e.touches[0] !== 'undefined') {
+                }
+            }
+            if (e.type === 'touchstart' || e.type === 'touchmove') {
+                if (
+                    !isNaN(e.touches[0].clientX) &&
+                    !isNaN(e.touches[0].clientY)
+                ) {
                     this.x = e.touches[0].clientX
                     this.y = e.touches[0].clientY
                 }
@@ -104,7 +117,9 @@ export default {
 
     &__logo {
         width: 15rem;
-        height: auto;
+        height: 22rem;
+        margin: 0 auto;
+        position: relative;
 
         @include respond('ipadPro') {
             width: 20rem;
@@ -116,6 +131,10 @@ export default {
     position: relative;
     overflow: hidden;
     height: 100vh;
+
+    @include respond('ipadPro') {
+        // height: 75vh;
+    }
 }
 
 .featured {
@@ -135,9 +154,12 @@ export default {
     transform: translate(-50%, -50%);
     font-size: 2rem;
 
-    @include respond('ipad') {
-        width: 90%;
+    @include respond('Galaxy') {
         top: 50%;
+    }
+
+    @include respond('400') {
+        width: 90%;
     }
 }
 </style>

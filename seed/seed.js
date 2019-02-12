@@ -155,7 +155,12 @@ const projects = [
         summary: 'Making Buildings Beautiful Again.',
         category: 'Featured',
         services: ['Creative Design'],
-        tags: ['Web development']
+        tags: ['Web development'],
+        feature: '/projects/cabs/feature.png',
+        colors: {
+            bgColor: '#0085AB',
+            color: '#FFFFFF'
+        }
     },
     {
         name: 'Seven Oaks Pricing',
@@ -163,7 +168,12 @@ const projects = [
         summary: 'Providing stable results for SO Modular tenders.',
         category: 'Featured',
         services: ['App Development', 'Data Clarity'],
-        tags: ['Local App', 'Business Intelligence', 'Document Generation']
+        tags: ['Local App', 'Business Intelligence', 'Document Generation'],
+        feature: '/projects/sop/feature.png',
+        colors: {
+            bgColor: '#82b968',
+            color: '#FFFFFF'
+        }
     },
     {
         name: 'SO Modular',
@@ -171,7 +181,12 @@ const projects = [
         summary: 'The Timber Frame Specialists',
         category: 'Featured',
         services: ['Creative Design'],
-        tags: ['Web development', 'Branding']
+        tags: ['Web development', 'Branding'],
+        feature: '/projects/som/feature.png',
+        colors: {
+            bgColor: '#82b948',
+            color: '#FFFFFF'
+        }
     },
     {
         name: 'Swansea Property',
@@ -179,7 +194,12 @@ const projects = [
         summary: 'Making Buildings Beautiful Again',
         category: 'Featured',
         services: ['Creative Design'],
-        tags: ['Web development']
+        tags: ['Web development'],
+        feature: '/projects/spa/feature.png',
+        colors: {
+            bgColor: '#d3b300',
+            color: '#FFFFFF'
+        }
     }
 ]
 

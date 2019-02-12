@@ -1,28 +1,15 @@
-const state = () => {
-    return {
-        pages: []
-    }
-}
+const state = () => ({
+    list: []
+})
 
-const mutations = {
-    SET_PAGES(state, pages) {
-        state.pages = pages
-    }
-}
+const mutations = {}
 
-const actions = {
-    initPages: ({ commit }) => {
-        commit('SET_PAGES', commit)
-    }
-}
+const actions = {}
 
 const getters = {
-    pages: state => {
-        return state.pages
-    },
-    page: state => {
+    page(state) {
         return keyword =>
-            state.name.filter(item => {
+            state.list.filter(item => {
                 return item.name === keyword
             })
     }

@@ -1,14 +1,14 @@
 <template>
     <div class="projects">
         <nuxt-link
-            v-for="(project,index) in projects"
+            v-for="(project,index) in featured"
             :key="index"
-            :to="'projects/' + project.id"
+            :to="'projects/' + project.route"
             class="project"
         >
             <div
                 class="project__container"
-                :style="{ backgroundColor: project.bgColor, color: project.color }"
+                :style="{ backgroundColor: project.colors.bgColor, color: project.colors.color }"
             >
                 <img class="project__image" :src="project.feature">
                 <div class="project__details">
@@ -29,44 +29,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-    data() {
-        return {
-            projects: [
-                {
-                    name: 'CABS Group',
-                    summary: 'Making Buildings beautiful Again.',
-                    bgColor: '#0085AB',
-                    color: '#FFFFFF',
-                    feature: '/projects/cabs/feature.png',
-                    id: 'cabs-group'
-                },
-                {
-                    name: 'Seven Oaks Pricing',
-                    summary: 'Providing stable results for SO Modular tenders.',
-                    bgColor: '#82b968',
-                    color: '#FFFFFF',
-                    feature: '/projects/sop/feature.png',
-                    id: 'so-pricing'
-                },
-                {
-                    name: 'SO Modular',
-                    summary: 'The Timber Frame Specialists.',
-                    bgColor: '#82b948',
-                    color: '#FFFFFF',
-                    feature: '/projects/som/feature.png',
-                    id: 'so-modular'
-                },
-                {
-                    name: 'Swansea Property',
-                    summary: 'Two websites for Swansea Properties.',
-                    bgColor: '#d3b300',
-                    color: '#FFFFFF',
-                    feature: '/projects/spa/feature.png',
-                    id: 'cabs-group'
-                }
-            ]
-        }
+    computed: mapGetters({
+        featured: 'projects/front'
+    }),
+    mounted() {
+        console.log(this.featured) //eslint-disable-line
     }
 }
 </script>
