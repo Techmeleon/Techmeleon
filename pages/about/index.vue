@@ -19,6 +19,13 @@ export default {
             summary:
                 'Forged on a 30 year friendship, we have come together to offer our knowledge & experience.'
         }
+    },
+    head() {
+        const page = this.$store.getters['pages/page']('Who')[0]
+        return {
+            titleTemplate: page.pageTitle,
+            meta: page.meta
+        }
     }
 }
 </script>

@@ -1,23 +1,43 @@
 <template>
     <main class="page" @mousemove="coords">
-        <header class="header">
-            <section class="hero">
-                <div class="hero__logo"><Logo class="logo" :x="x" :y="y" :activate-the-eye="true"/></div>
-                <h1><Techmeleon class="header__big" /></h1>
-                <h2 class="header__statement">
-                    Using the right technology<br>to enhance your business<br>
-                </h2>
-            </section>
+        <div class="page__top" />
 
-            <div class="under-construction bottom">
-                Our website is currently under construction while we prioritise clients.
+        <div v-waypoint="{ active: true, callback: waypointHeader, options: intersectionOptions }" class="wp-trigger" style="{top: 50%}" />
+        <header
+            class="header"
+            :class="{out: waypoint > 0}"
+        >
+            <div class="header__container u-relative">
+                <section class="hero">
+                    <div class="hero__logo" :class="{in: waypoint === 0 }">
+                        <Logo class="logo" :x="x" :y="y" :activate-the-eye="true" />
+                    </div>
+                    <h1 :class="{in: waypoint === 0 }" class="hero__title">
+                        <Techmeleon class="header__big" />
+                    </h1>
+                    <h2 :class="{in: waypoint === 0 }" class="hero__statement">
+                        Using the right technology<br>to enhance your business<br>
+                    </h2>
+                </section>
+
+                <div class="under-construction bottom">
+                    Our website is currently under construction while we prioritise clients.
+                </div>
+                <app-scroll-to el=".services" />
             </div>
-            <app-scroll-to el=".services" />
         </header>
         <section class="services">
-            <Logo class="logo left" :x="x" :y="y" :activate-the-eye="true" />
-
-            <div class="services__container">
+            <Logo
+                :x="x"
+                :y="y"
+                :activate-the-eye="true"
+                class="logo left"
+                :class="{in: waypoint === 1 }"
+            />
+            <div
+                v-waypoint="{ active: true, callback: waypointServices, options: intersectionOptions }"
+                class="services__container"
+            >
                 <Services />
             </div>
             <app-scroll-to el=".featured" />
@@ -47,7 +67,13 @@ export default {
         return {
             x: 0,
             y: 0,
-            scrollY: 0
+            scrollY: 0,
+            waypoint: -1,
+            intersectionOptions: {
+                root: null,
+                rootMargin: '20px 0px 0px 0px',
+                threshold: [0.5] // [0.25, 0.75] if you want a 25% offset!
+            } // https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
         }
     },
     head() {
@@ -61,7 +87,6 @@ export default {
         document.addEventListener('mousemove', this.coords)
         document.addEventListener('touchstart', this.coords)
         document.addEventListener('touchmove', this.coords)
-        console.log(this.page('Landing')[0]) //eslint-disable-line
     },
     destroyed() {
         document.removeEventListener('mousemove', this.coords)
@@ -85,6 +110,15 @@ export default {
                     this.y = e.touches[0].clientY
                 }
             }
+        },
+        waypointServices({ going, direction }) {
+            if (direction === this.$waypointMap.DIRECTION_TOP) {
+                this.waypoint = 1
+            }
+        },
+        waypointHeader({ going, direction }) {
+            console.log(direction + ' : ws triggered') //eslint-disable-line
+            this.waypoint = 0
         }
     }
 }
@@ -94,9 +128,27 @@ export default {
 @import '@/assets/sass/abstracts/_mixins.scss';
 
 .header {
-    position: relative;
+    top: 0;
+    left: 0;
+    position: fixed;
     overflow: hidden;
     height: 100vh;
+    width: 100%;
+    z-index: 3;
+    transition: all 1s;
+    opacity: 1;
+    visibility: visible;
+
+    &__container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    &.out {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 .hero {
@@ -120,9 +172,38 @@ export default {
         height: 22rem;
         margin: 0 auto;
         position: relative;
+        transition: all 1s;
+        transition-delay: 0.5s;
+        opacity: 0;
 
         @include respond('ipadPro') {
             width: 20rem;
+        }
+
+        &.in {
+            opacity: 1;
+        }
+    }
+
+    &__title {
+        transition: all 1s;
+        transition-delay: 0.7s;
+        opacity: 0;
+        transform: translateY(20px);
+        &.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    &__statement {
+        transition: all 1s;
+        transition-delay: 0.9s;
+        opacity: 0;
+        transform: translateY(20px);
+        &.in {
+            opacity: 1;
+            transform: translateY(0);
         }
     }
 }
@@ -131,6 +212,8 @@ export default {
     position: relative;
     overflow: hidden;
     height: 100vh;
+    margin-top: 100vh;
+    z-index: 2;
 
     @include respond('ipadPro') {
         // height: 75vh;
@@ -141,6 +224,7 @@ export default {
     position: relative;
     overflow: hidden;
     height: 100vh;
+    z-index: 2;
 }
 
 .services__container {
@@ -161,5 +245,29 @@ export default {
     @include respond('400') {
         width: 90%;
     }
+}
+
+.logo.left {
+    opacity: 0;
+    transition: all 1s;
+    transition-delay: 0.5s;
+    transform: translate(-100%, 20%) rotate(-30deg);
+
+    &.in {
+        opacity: 1;
+        transform: translate(-40%, 0);
+    }
+}
+.next-page {
+    z-index: 2;
+}
+
+.wp-trigger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10%;
+    height: 2rem;
+    background: transparent;
 }
 </style>

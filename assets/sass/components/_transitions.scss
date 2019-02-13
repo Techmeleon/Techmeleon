@@ -13,7 +13,6 @@
         will-change: transform;
         border-radius: 50%;
         z-index: 50;
-        transition: transform 1s;
         transition-timing-function: ease-in-out;
         &__logo {
             transform-origin: 0 0;
@@ -31,8 +30,8 @@
     }
     &.transition {
         & .boom {
+            transition: transform 1s;
             transform: scale(2, 2) translate(-50%, -50%);
-
             &__logo {
                 transform: scale(1, 1) translate(-50%, -50%);
                 opacity: 1;
@@ -138,4 +137,5 @@
         }
     }
 }
+
 //

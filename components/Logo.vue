@@ -1,5 +1,5 @@
 <template>
-    <div v-in-viewport="-500" class="logo">
+    <div class="logo">
         <!-- eslint-disable -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 179.9 204.2" width="100%" preserveAspectRatio="xMidYMid meet">
             <style>

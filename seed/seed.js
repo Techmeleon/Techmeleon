@@ -88,6 +88,36 @@ const pages = [
             subHeader:
                 'Forged on a 30 year friendship, we have come together to offer our knowledge, experience & brutal honesty.'
         }
+    },
+    {
+        name: 'Contact',
+        pageTitle: 'Contact | Techmeleon',
+        meta: [
+            {
+                name: 'description',
+                content:
+                    'Begin Project or have a quick chat. Contact Techmeleon.'
+            },
+            {
+                name: 'keywords',
+                content: 'Web development,App Development,Creative Design'
+            }
+        ]
+    },
+    {
+        name: 'Policies',
+        pageTitle: 'Policies | Techmeleon',
+        meta: [
+            {
+                name: 'description',
+                content:
+                    'Techmeleon Policies.'
+            },
+            {
+                name: 'keywords',
+                content: 'Policies'
+            }
+        ]
     }
 ]
 

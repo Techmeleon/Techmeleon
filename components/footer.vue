@@ -14,7 +14,7 @@
             </div>
         </nuxt-link>
 
-        <app-scroll-to el=".page" :invert="true" />
+        <app-scroll-to el=".page__top" :invert="true" />
     </section>
 </template>
 

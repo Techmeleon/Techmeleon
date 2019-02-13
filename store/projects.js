@@ -15,7 +15,6 @@ const getters = {
     },
     front(state) {
         return state.list.filter(item => {
-            console.log(item) //eslint-disable-line
             return item.category === 'Featured'
         })
     }

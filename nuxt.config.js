@@ -85,7 +85,11 @@ module.exports = {
             ssr: false
         },
         '~/plugins/vue-scrollto',
-        '~/plugins/vue-fontawesome'
+        '~/plugins/vue-fontawesome',
+        {
+            src: '~/plugins/vue-waypoint',
+            ssr: false
+        }
     ],
 
     /*

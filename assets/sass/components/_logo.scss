@@ -4,43 +4,22 @@
     top: 0rem;
     height: auto;
     transition: 1s all;
-
+    &.right,
+    &.left {
+        top: 7rem;
+        width: 200px;
+        @include respond('ipadPro') {
+            width: 400px;
+        }
+        z-index: 2;
+    }
     &.right {
         opacity: 0.3;
         right: 0;
-        transform: translate(100%, 0%) rotate(180deg);
-        // transition: rotate 1.5s, translate 1s;
-        transition-delay: 1s;
-        width: 200px;
-        top: 7rem;
-        @include respond('ipad') {
-            width: 400px;
-        }
     }
     &.left {
+        opacity: 1;
         left: 0;
         transform: translate(-40%, 0%);
-        // transition: rotate 1.5s, translate 1s;
-        opacity: 1;
-        width: 200px;
-        top: 7rem;
-        @include respond('ipad') {
-            width: 400px;
-        }
-    }
-}
-
-.loaded {
-    & .logo {
-        &.in-viewport {
-            &.left {
-                transform: translate(-40%, 0%);
-                opacity: 1;
-            }
-            &.right {
-                transform: translate(65%, 0%);
-                opacity: 0.3;
-            }
-        }
     }
 }

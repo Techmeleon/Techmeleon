@@ -36,6 +36,13 @@ export default {
                 }
             ]
         }
+    },
+    head() {
+        const page = this.$store.getters['pages/page']('Policies')[0]
+        return {
+            titleTemplate: page.pageTitle,
+            meta: page.meta
+        }
     }
 }
 </script>

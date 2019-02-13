@@ -19,6 +19,13 @@ export default {
             summary:
                 'With over 12 years experience in business analysis, development and UX design. We are here to help you achieve your goals.'
         }
+    },
+    head() {
+        const page = this.$store.getters['pages/page']('Services')[0]
+        return {
+            titleTemplate: page.pageTitle,
+            meta: page.meta
+        }
     }
 }
 </script>

@@ -66,6 +66,13 @@ export default {
             sectionNumber: 1
         }
     },
+    head() {
+        const page = this.$store.getters['pages/page']('Contact')[0]
+        return {
+            titleTemplate: page.pageTitle,
+            meta: page.meta
+        }
+    },
     beforeMount() {
         const now = new Date().getHours()
 

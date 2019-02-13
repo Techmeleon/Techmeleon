@@ -1,5 +1,5 @@
 <template>
-    <div class="projects">
+    <div v-in-viewport="-200" class="projects">
         <nuxt-link
             v-for="(project,index) in featured"
             :key="index"
@@ -60,9 +60,24 @@ export default {
             background-color: white;
         }
     }
-}
 
+    &.in-viewport {
+        & .project {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+    }
+}
+@for $i from 1 through 4 {
+    .project:nth-child(#{$i}) {
+        transition-delay: #{($i * 0.3)}s;
+    }
+}
 .project {
+    opacity: 0;
+    transform: translate(0, 300px);
+    transition: all 1s;
+
     &:nth-child(3),
     &:nth-child(4) {
         display: none;
