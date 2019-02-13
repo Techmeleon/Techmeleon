@@ -1,6 +1,6 @@
 <template>
     <main class="page">
-        <Header :title="title" :caption="caption" :summary="summary" />
+        <Header :title="pageData.content.header" :caption="pageData.content.tag" :summary="pageData.content.subHeader" />
 
         <app-footer class="next-page" :next-page="{title: 'Contact', link: '/contact'}" />
     </main>
@@ -21,10 +21,15 @@ export default {
         }
     },
     head() {
-        const page = this.$store.getters['pages/page']('Who')[0]
+        const page = this.pageData
         return {
             titleTemplate: page.pageTitle,
             meta: page.meta
+        }
+    },
+    computed: {
+        pageData() {
+            return this.$store.getters['pages/page']('Who')[0]
         }
     }
 }

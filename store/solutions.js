@@ -7,9 +7,9 @@ const mutations = {}
 const actions = {}
 
 const getters = {
-    service: state => {
+    solution: state => {
         return keyword =>
-            state.services.filter(item => {
+            state.solutions.filter(item => {
                 return item.route === keyword
             })
     }

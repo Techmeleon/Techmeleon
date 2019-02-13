@@ -1,5 +1,5 @@
 <template>
-    <div v-in-viewport="-200" class="projects">
+    <div v-in-viewport.once="-200" class="projects">
         <nuxt-link
             v-for="(project,index) in featured"
             :key="index"
@@ -33,10 +33,7 @@ import { mapGetters } from 'vuex'
 export default {
     computed: mapGetters({
         featured: 'projects/front'
-    }),
-    mounted() {
-        console.log(this.featured) //eslint-disable-line
-    }
+    })
 }
 </script>
 <style lang="scss" scoped>

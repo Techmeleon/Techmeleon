@@ -3,10 +3,10 @@
         <div class="contact u-abs">
             <transition name="scan" mode="out-in">
                 <section v-if="sectionNumber === 1" key="1" class="contact__section">
-                    <h1 class="header__title">
+                    <h1 class="header__title" :class="{animate: animate}">
                         <span>Good {{ welcomeTimeMessage }}</span>
                     </h1>
-                    <h2 class="header__summary">
+                    <h2 class="header__summary" :class="{animate: animate}">
                         <span>How can we help you?</span>
                     </h2>
                     <a href="#" class="contact__section__link btn" @click.prevent="sectionNumber = 2">
@@ -43,7 +43,7 @@
                             </a>
                         </div> -->
                         <div class="contact__email">
-                            <a href="mailto">
+                            <a href="mailto:hello@techmeleon.co.uk">
                                 <font-awesome-icon icon="envelope-open" />  hello@techmeleon.co.uk
                             </a>
                         </div>
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import ContactForm from '~/components/contact/form'
+import ContactForm from '~/components/contact/contact-form'
 export default {
     components: {
         ContactForm
@@ -63,7 +63,8 @@ export default {
     data() {
         return {
             welcomeTimeMessage: 'Morning',
-            sectionNumber: 1
+            sectionNumber: 1,
+            animate: true
         }
     },
     head() {
@@ -85,6 +86,11 @@ export default {
         if (now >= 18) {
             this.welcomeTimeMessage = 'evening'
         }
+    },
+    mounted() {
+        setTimeout(() => {
+            this.animate = false
+        }, 5000)
     }
 }
 </script>
@@ -142,6 +148,51 @@ export default {
     &__direct {
         margin-top: 2rem;
         margin-bottom: 0;
+    }
+}
+
+// transitions
+.header {
+    &__title {
+        line-height: 6.5rem;
+        margin-bottom: 0;
+    }
+
+    &__title.animate,
+    &__summary.animate {
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0 auto;
+        width: 0;
+    }
+}
+
+.contact__section__link {
+    opacity: 0;
+    transition: all 0.7s;
+    transition-delay: 1.9s;
+    transform: translateX(-20px);
+
+    &.right {
+        transition-delay: 2s;
+        transform: translateX(20px);
+    }
+}
+
+.loaded {
+    .header {
+        &__title.animate {
+            animation: typing 2s steps(40, end) forwards;
+        }
+        &__summary.animate {
+            animation: typing 2s steps(40, end) forwards;
+            animation-delay: 0.8s;
+        }
+    }
+
+    .contact__section__link {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 </style>

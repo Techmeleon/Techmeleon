@@ -80,6 +80,7 @@ module.exports = {
         '~/plugins/global',
         '~/plugins/vue-moment',
         '~/plugins/vue-in-viewport',
+        '~/plugins/vue-datetime',
         {
             src: '~/plugins/vue-carousel-3d',
             ssr: false
@@ -91,7 +92,7 @@ module.exports = {
             ssr: false
         }
     ],
-
+    serverMiddleware: ['~/middleware/api/contact'],
     /*
   ** Nuxt.js modules
   */

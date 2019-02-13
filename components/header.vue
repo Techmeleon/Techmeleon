@@ -120,4 +120,54 @@ export default {
         margin-bottom: 2rem;
     }
 }
+
+// transitions
+.logo.left {
+    opacity: 0;
+    transition: all 1s;
+    transition-delay: 1.5s;
+    transform: translate(-100%, 20%) rotate(-30deg);
+}
+
+.header {
+    &__caption {
+        opacity: 0;
+        transition: all 1s;
+        transition-delay: 0.6s;
+        transform: translateY(-20px);
+    }
+    &__title {
+        opacity: 0;
+        transition: all 1s;
+        transition-delay: 0.3s;
+        transform: translateY(20px);
+    }
+    &__summary {
+        opacity: 0;
+        transition: all 1s;
+        transition-delay: 0.9s;
+        transform: translateY(20px);
+    }
+}
+
+.loaded {
+    & .logo.left {
+        opacity: 1;
+        transform: translate(-40%, 0);
+    }
+    .header {
+        &__caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        &__title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        &__summary {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
 </style>

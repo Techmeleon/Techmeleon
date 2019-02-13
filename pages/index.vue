@@ -15,9 +15,7 @@
                     <h1 :class="{in: waypoint === 0 }" class="hero__title">
                         <Techmeleon class="header__big" />
                     </h1>
-                    <h2 :class="{in: waypoint === 0 }" class="hero__statement">
-                        Using the right technology<br>to enhance your business<br>
-                    </h2>
+                    <h2 :class="{in: waypoint === 0 }" class="hero__statement" v-html="pageData.content.subHeader" /> <!-- eslint-disable-line -->
                 </section>
 
                 <div class="under-construction bottom">
@@ -38,7 +36,7 @@
                 v-waypoint="{ active: true, callback: waypointServices, options: intersectionOptions }"
                 class="services__container"
             >
-                <Services />
+                <Solutions />
             </div>
             <app-scroll-to el=".featured" />
         </section>
@@ -46,21 +44,21 @@
             <Featured />
         </section>
 
-        <app-footer class="next-page" :next-page="{title: 'Solutions', link: '/services'}" />
+        <app-footer class="next-page" :next-page="{title: 'Solutions', link: '/solutions'}" />
     </main>
 </template>
 
 <script>
 import Logo from '~/components/Logo'
 import Techmeleon from '~/components/Techmeleon'
-import Services from '~/components/services/services'
+import Solutions from '~/components/solutions/solutions'
 import Featured from '~/components/projects/featured'
 
 export default {
     components: {
         Logo,
         Techmeleon,
-        Services,
+        Solutions,
         Featured
     },
     data() {
@@ -77,10 +75,15 @@ export default {
         }
     },
     head() {
-        const page = this.$store.getters['pages/page']('Landing')[0]
+        const page = this.pageData
         return {
             titleTemplate: page.pageTitle,
             meta: page.meta
+        }
+    },
+    computed: {
+        pageData() {
+            return this.$store.getters['pages/page']('Landing')[0]
         }
     },
     mounted() {
@@ -214,10 +217,6 @@ export default {
     height: 100vh;
     margin-top: 100vh;
     z-index: 2;
-
-    @include respond('ipadPro') {
-        // height: 75vh;
-    }
 }
 
 .featured {
@@ -258,6 +257,7 @@ export default {
         transform: translate(-40%, 0);
     }
 }
+
 .next-page {
     z-index: 2;
 }

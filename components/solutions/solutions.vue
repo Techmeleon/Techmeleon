@@ -11,7 +11,7 @@
                 class="services"
             >
                 <slide
-                    v-for="(service, index) in loadServices"
+                    v-for="(service, index) in getSolutions"
                     :key="index"
                     :index="index"
                     class="service"
@@ -44,8 +44,8 @@ export default {
         }
     },
     computed: {
-        loadServices() {
-            return this.$store.state.services.list
+        getSolutions() {
+            return this.$store.state.solutions.list
         }
     },
     mounted() {

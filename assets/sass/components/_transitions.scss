@@ -138,4 +138,19 @@
     }
 }
 
-//
+.fade {
+    &-enter-active,
+    &-leave-active {
+        transition: opacity 0.5s;
+        transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
+        overflow: hidden;
+    }
+
+    &-enter {
+        opacity: 0;
+    }
+
+    &-leave-active {
+        opacity: 0;
+    }
+}

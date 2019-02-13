@@ -1,23 +1,25 @@
 <template>
     <div class="page">
-        <header class="policy__header">
-            <h1 class="header__title">
-                Policies
-            </h1>
+        <div class="policies-trans">
+            <header class="policy__header">
+                <h1 class="header__title">
+                    Policies
+                </h1>
 
-            <nav class="policy__links">
-                <nuxt-link
-                    v-for="policy in policies"
-                    :key="policy.route"
-                    :to="'/policies/' + policy.route"
-                    class="nav__link"
-                >
-                    <span>{{ policy.title }}</span>
-                </nuxt-link>
-            </nav>
-        </header>
+                <nav class="policy__links">
+                    <nuxt-link
+                        v-for="policy in policies"
+                        :key="policy.route"
+                        :to="'/policies/' + policy.route"
+                        class="nav__link"
+                    >
+                        <span>{{ policy.title }}</span>
+                    </nuxt-link>
+                </nav>
+            </header>
 
-        <nuxt-child />
+            <nuxt-child />
+        </div>
     </div>
 </template>
 
@@ -25,16 +27,7 @@
 export default {
     data() {
         return {
-            policies: [
-                {
-                    title: 'Cookies',
-                    route: 'cookie-policy'
-                },
-                {
-                    title: 'Privacy',
-                    route: 'privacy-policy'
-                }
-            ]
+            policies: []
         }
     },
     head() {
@@ -43,6 +36,23 @@ export default {
             titleTemplate: page.pageTitle,
             meta: page.meta
         }
+    },
+    mounted() {
+        const policies = this.$store.getters['policies/policies']
+        this.policies = policies
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.policies-trans {
+    opacity: 0;
+    transition: 2s opacity;
+}
+
+.loaded {
+    & .policies-trans {
+        opacity: 1;
+    }
+}
+</style>

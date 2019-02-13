@@ -1,7 +1,8 @@
 <template>
     <main class="page">
         <Header :title="pageData.content.header" :caption="pageData.content.tag" :summary="pageData.content.subHeader" />
-        <app-footer class="next-page" :next-page="{title: 'Who', link: '/about'}" />
+
+        <app-footer class="next-page" :next-page="{title: 'Projects', link: '/projects'}" />
     </main>
 </template>
 
@@ -10,14 +11,6 @@ import Header from '~/components/header'
 export default {
     components: {
         Header
-    },
-    data() {
-        return {
-            title: 'Projects',
-            caption: 'Passionate & focused',
-            summary:
-                'With over 12 years experience in business analysis, development and UX design. We are here to help you achieve your goals.'
-        }
     },
     head() {
         const page = this.pageData
@@ -28,7 +21,7 @@ export default {
     },
     computed: {
         pageData() {
-            return this.$store.getters['pages/page']('Projects')[0]
+            return this.$store.getters['pages/page']('Solutions')[0]
         }
     }
 }

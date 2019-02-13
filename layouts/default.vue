@@ -60,8 +60,8 @@ export default {
                             path: '/projects'
                         },
                         {
-                            name: 'Services',
-                            path: '/services'
+                            name: 'Solutions',
+                            path: '/solutions'
                         },
                         {
                             name: 'Who',
