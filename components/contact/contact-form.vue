@@ -60,11 +60,11 @@
                             pattern="[0-9]{5} [0-9]{6}"
                             maxlength="11"
                             name="telephone"
-                            placeholder="Telephone*"
+                            placeholder="Telephone"
                             class="contact-form__input"
                         >
                         <label for="telephone" class="contact-form__label">
-                            Telephone*
+                            Telephone
                         </label>
                     </div>
                 </form>
@@ -176,7 +176,7 @@
             >
                 <div class="please-wait" />
                 <div class="contact-form__section__title finished">
-                    Sent!<br>We will send a confirmation Soon!
+                    {{ returnMessage }}
                 </div>
             </div>
         </transition>
@@ -198,7 +198,8 @@ export default {
                 budget: '',
                 message: '',
                 date: ''
-            }
+            },
+            returnMessage: 'Sent!<br>We will send a confirmation Soon!'
         }
     },
     computed: {
@@ -218,11 +219,12 @@ export default {
                     .then(response => {
                         console.log(response) //eslint-disable-line
                         if (response.message !== 'Success') {
-                            alert(
-                                'Submission failed on response. Please contact us directly'
-                            )
+                            this.returnMessage =
+                                'Submission failed!<br>Please contact us directly.'
                             this.sectionNumber -= 1
                         }
+                        this.returnMessage =
+                            'Sent!<br>We will send a confirmation Soon!'
                         _this.inprogress = false
                     })
                     .catch(err => {

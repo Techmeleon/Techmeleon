@@ -2,7 +2,18 @@ import express from 'express'
 // import xssFilters from 'xss-filters'
 // import validator from 'validator'
 import nodemailer from 'nodemailer'
-const config = require('../config.js')
+const config = {
+    email: {
+        service: 'Outlook365',
+        auth: {
+            user: 'webcontact@techmeleon.co.uk',
+            pass: 't3chm3leon@2'
+        }
+    },
+    other: {
+        deliverEmail: 'hello@techmeleon.co.uk, james.williams@techmeleon.co.uk'
+    }
+}
 
 const app = express()
 
@@ -34,9 +45,13 @@ app.post('/', (req, res) => {
     //         .status(422)
     //         .json({ error: 'Ugh.. That looks unprocessable!' })
     // }
+    const result = sendMail(req.body.data)
 
-    sendMail(req.body.data)
-    res.status(200).json({ message: 'Success' })
+    if (result) {
+        res.status(200).json({ message: 'Success' })
+    } else {
+        res.status(422).json({ message: 'Ugh.. That looks unprocessable!' })
+    }
 })
 // const rejectFunctions = new Map([
 //     ['name', v => v.length < 4],
@@ -75,7 +90,7 @@ const sendMail = data => {
             'Dear Techmeleon,<br><br>' +
             '<b>' +
             (data.company === ''
-                ? `${data.name}`
+                ? `${data.name}<br>`
                 : `${data.name} @ ${data.company}` +
                   ' wishes to make contact!</b><br><br>') +
             `<b>Email: </b><a href="emailto:${data.email}">${
@@ -94,13 +109,13 @@ const sendMail = data => {
             (data.message === '' ? '' : `<b>Message: </b>${data.message}<br>`)
     }
 
-    transporter
+    return transporter
         .sendMail(emailDetails)
         .then(response => {
-            console.log(response) //eslint-disable-line
+            return true
         })
         .catch(e => {
-            console.log(e) //eslint-disable-line
+            return false
         })
 }
 
