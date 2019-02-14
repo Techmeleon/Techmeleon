@@ -210,7 +210,7 @@ export default {
             this.sectionNumber += 1
             if (!this.inprogress) {
                 const _this = this
-                const url = '/api/contact'
+                const url = window.location.hostname + '/api/contact'
                 this.inprogress = true
                 this.$axios
                     .$post(url, { data: this.contact })
