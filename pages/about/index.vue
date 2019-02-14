@@ -1,24 +1,27 @@
 <template>
     <main class="page">
+        <div class="page__top" />
         <Header :title="pageData.content.header" :caption="pageData.content.tag" :summary="pageData.content.subHeader" />
-
-        <app-footer class="next-page" :next-page="{title: 'Contact', link: '/contact'}" />
+        <div class="who">
+            <who
+                v-for="(section, index) in pageData.content.sections"
+                :id="'who__section' + index"
+                :key="index"
+                :data="section"
+            />
+        </div>
+        <app-footer class="next-page" :next-page="{title: 'Contact Us', link: '/contact'}" />
     </main>
 </template>
 
 <script>
 import Header from '~/components/header'
+import Who from '~/components/who/section'
+
 export default {
     components: {
-        Header
-    },
-    data() {
-        return {
-            title: 'Meet Matt & James',
-            caption: 'One Big Family',
-            summary:
-                'Forged on a 30 year friendship, we have come together to offer our knowledge & experience.'
-        }
+        Header,
+        Who
     },
     head() {
         const page = this.pageData

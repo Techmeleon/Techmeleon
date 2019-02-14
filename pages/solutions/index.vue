@@ -1,5 +1,6 @@
 <template>
     <main class="page">
+        <div class="page__top" />
         <Header :title="pageData.content.header" :caption="pageData.content.tag" :summary="pageData.content.subHeader" />
 
         <app-footer class="next-page" :next-page="{title: 'Projects', link: '/projects'}" />

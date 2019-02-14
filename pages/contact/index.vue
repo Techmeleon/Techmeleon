@@ -1,5 +1,6 @@
 <template>
     <main class="page">
+        <div class="page__top" />
         <div class="contact u-abs">
             <transition name="scan" mode="out-in">
                 <section v-if="sectionNumber === 1" key="1" class="contact__section">

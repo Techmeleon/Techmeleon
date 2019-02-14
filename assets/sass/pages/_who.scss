@@ -1,0 +1,39 @@
+.who {
+    background-color: $color-background-light;
+    &__section {
+        position: relative;
+        text-align: left;
+        padding: 3rem;
+        max-width: 90rem;
+        margin: 0 auto;
+        @include respond('ipad') {
+            @supports (display: grid) {
+                display: grid;
+            }
+        }
+    }
+    &__title {
+        font-family: 'Techmeleon';
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        color: $color-primary;
+    }
+    &__tag {
+        font-size: 5rem;
+        font-family: 'Techmeleon';
+        color: $color-primary;
+        line-height: 5.5rem;
+        margin: 2rem 0;
+    }
+    &__content {
+        font-size: 2rem;
+        & p {
+            margin-bottom: 3rem;
+        }
+    }
+    &__images {}
+    &__image {
+        width: 100%;
+        height: auto;
+    }
+}

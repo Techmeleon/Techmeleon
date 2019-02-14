@@ -2,6 +2,7 @@ import express from 'express'
 // import xssFilters from 'xss-filters'
 // import validator from 'validator'
 import nodemailer from 'nodemailer'
+const config = require('../config.js')
 
 const app = express()
 
@@ -51,17 +52,56 @@ app.post('/', (req, res) => {
 // }
 
 const sendMail = data => {
-    const transporter = nodemailer.createTransport({
-        sendmail: true,
-        newline: 'unix',
-        path: '/usr/sbin/sendmail'
-    })
-    transporter.sendMail({
-        from: data.email,
-        to: 'hello@techmeleon.co.uk',
-        subject: 'New contact form message',
-        text: data.name + data.msg
-    })
+    console.log(config.email) //eslint-disable-line
+    const transporter = nodemailer.createTransport(config.email)
+
+    const emailDetails = {
+        from: config.email.auth.user,
+        to: config.other.deliverEmail,
+        subject:
+            data.company === ''
+                ? `${data.name}`
+                : `${data.name} @ ${data.company}` + ' wishes to make contact!',
+        text: `Dear Techmeleon,\n\rI can be contact on the following email: ${
+            data.email
+        }
+        ${data.telephone === '' ? '' : ' or Tel: ' + data.telephone}\r\n
+        ${data.solution === '' ? '' : 'Solution: ' + data.solution}\r\n
+        ${data.budget === '' ? '' : 'Budget: ' + data.budget}\r\n
+        ${data.message === '' ? '' : 'Message: ' + data.message}\r\n
+        ${data.date === '' ? '' : 'Appointment: ' + data.date}\r\n
+        `,
+        html:
+            'Dear Techmeleon,<br><br>' +
+            '<b>' +
+            (data.company === ''
+                ? `${data.name}`
+                : `${data.name} @ ${data.company}` +
+                  ' wishes to make contact!</b><br><br>') +
+            `<b>Email: </b><a href="emailto:${data.email}">${
+                data.email
+            }</a><br>` +
+            (data.telephone === ''
+                ? ''
+                : `<b>Tel: </b><a href="tel:${data.telephone}">${
+                      data.telephone
+                  }</a><br>`) +
+            (data.solution === ''
+                ? ''
+                : `<b>Solution: </b>${data.solution}<br>`) +
+            (data.budget === '' ? '' : `<b>Budget: </b>${data.budget}<br>`) +
+            (data.date === '' ? '' : `<b>Appointment: </b>${data.date}<br>`) +
+            (data.message === '' ? '' : `<b>Message: </b>${data.message}<br>`)
+    }
+
+    transporter
+        .sendMail(emailDetails)
+        .then(response => {
+            console.log(response) //eslint-disable-line
+        })
+        .catch(e => {
+            console.log(e) //eslint-disable-line
+        })
 }
 
 export default {

@@ -87,7 +87,107 @@ const pages = [
             tag: 'One Big Family',
             header: 'Meet Matt & James',
             subHeader:
-                'Forged on a 30 year friendship, we have come together to offer our knowledge, experience & brutal honesty.'
+                'Forged on a 30 year friendship, we have come together to offer our knowledge, experience & brutal honesty.',
+            sections: [
+                {
+                    title: 'Techmeleon',
+                    tag: 'Reunited',
+                    content:
+                        "<p>At the end of 2017, <b>James</b> finally came home to Wales and to prevent him leaving again, <b>Matt & James</b> formed Techmeleon, a digital solutions consultancy based in South Wales.</p><p>With James' background in data, development & business intelligence and Matt's knowledge in infustructure & operations, together they bring the full life cycle of something.......</p>",
+                    images: [
+                        {
+                            src: '',
+                            alt: 'Now'
+                        },
+                        {
+                            src: '/who/Matt and James.jpg',
+                            alt: 'A long time ago'
+                        }
+                    ]
+                },
+                {
+                    title: 'MATTHEW FLINT - CO-FOUNDER',
+                    tag: 'Gives too much friendly advice.',
+                    content:
+                        '<p><b>Run his own successful I.T. Consultantancy business for over 15 years.</b></p><p>Matt has managed and run his own I.T. Solutions company and has been part of the journey of many successful startup companies from small one man offices to goliaths they are now.</p><p>Outside of work he manages his broad of children like a well oiled machine, pumps iron and is always extremely modest.</p>',
+                    images: [
+                        {
+                            src: '/who/Matt.jpg',
+                            alt: 'Extremely Modest'
+                        }
+                    ]
+                },
+                {
+                    title: 'JAMES WILLIAMS - CO-FOUNDER',
+                    tag: 'Needs a swear jar.',
+                    content:
+                        '<p><b>A hands-on perfectionist with more than 12 years of development experience.</b></p><p>James had been living abroad for 6 years in Luxembourg while consulting for Clearstream Deutsche Boerse. He contributed to many high value solutions and developed over 50 apps, technical ETLs and BI works as part of the business solutions team.</p><p>After many years away it was time to come home, but not before bringing his favourite thing back.<br>Leffe Blonde.</p><p>Outside of work he does whatever his children tell him while secretly training them in the way of the code.</p>',
+                    images: [
+                        {
+                            src: '/who/training.jpg',
+                            alt: 'Training'
+                        }
+                    ]
+                }
+            ],
+            companies: [
+                {
+                    src: '',
+                    alt: 'Clearstream / Deutsche Boerse'
+                },
+                {
+                    src: '',
+                    alt: 'State street'
+                },
+                {
+                    src: '',
+                    alt: 'Brickendon'
+                },
+                {
+                    src: '',
+                    alt: 'Lloyds TSB'
+                },
+                {
+                    src: '',
+                    alt: 'Environment Agency'
+                },
+                {
+                    src: '',
+                    alt: 'Fujitsu Services'
+                },
+                {
+                    src: '',
+                    alt: 'Hale Construction'
+                },
+                {
+                    src: '',
+                    alt: 'Hale Homes'
+                },
+                {
+                    src: '',
+                    alt: 'SO Modular'
+                },
+                {
+                    src: '',
+                    alt: 'CABS'
+                },
+                {
+                    src: '',
+                    alt: 'Direct Nursing Services'
+                },
+                {
+                    src: '',
+                    alt: 'ACS'
+                },
+                {
+                    src: '',
+                    alt: 'Swansea Property Agents'
+                },
+                {
+                    src: '',
+                    alt: 'Cabinet Developments'
+                }
+            ]
         }
     },
     {

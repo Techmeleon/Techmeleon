@@ -157,6 +157,8 @@
                 <datetime
                     v-model="contact.date"
                     type="datetime"
+                    :class="{off: contact.date !== ''}"
+                    title="Pick a date & time 2"
                 />
                 <div class="next">
                     <div class="back" @click="sectionNumber -= 1">
@@ -212,19 +214,21 @@ export default {
                 const url = '/api/contact'
                 this.inprogress = true
                 this.$axios
-                    .$post(url, { data: this.contact }, { emulateJSON: true })
+                    .$post(url, { data: this.contact })
                     .then(response => {
-                        _this.formSent = response.body.success
-                        if (!response.body.success) {
+                        console.log(response) //eslint-disable-line
+                        if (response.message !== 'Success') {
                             alert(
-                                'Submission failed. Please contact us directly'
+                                'Submission failed on response. Please contact us directly'
                             )
                             this.sectionNumber -= 1
                         }
                         _this.inprogress = false
                     })
                     .catch(err => {
-                        alert('Submission failed. Please contact us directly')
+                        alert(
+                            'Submission failed on post. Please contact us directly'
+                        )
                         _this.inprogress = false
                         this.sectionNumber -= 1
                         console.log(err) //eslint-disable-line

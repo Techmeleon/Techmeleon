@@ -1,5 +1,6 @@
 <template>
     <div class="page">
+        <div class="page__top" />
         <div class="policies-trans">
             <header class="policy__header">
                 <h1 class="header__title">

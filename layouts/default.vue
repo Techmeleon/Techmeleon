@@ -114,7 +114,7 @@ export default {
     z-index: 99;
     align-items: center;
     transition: 0.5s transform;
-    padding: 0 3rem;
+    padding: 0 2rem 0 3rem;
 
     &.hide {
         transform: translateY(-100%);
