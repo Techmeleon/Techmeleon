@@ -221,18 +221,15 @@ export default {
                         if (response.message !== 'Success') {
                             this.returnMessage =
                                 'Submission failed!<br>Please contact us directly.'
-                            this.sectionNumber -= 1
                         }
                         this.returnMessage =
                             'Sent!<br>We will send a confirmation Soon!'
                         _this.inprogress = false
                     })
                     .catch(err => {
-                        alert(
-                            'Submission failed on post. Please contact us directly'
-                        )
+                        this.returnMessage =
+                            'Submission failed!<br>Please contact us directly.'
                         _this.inprogress = false
-                        this.sectionNumber -= 1
                         console.log(err) //eslint-disable-line
                     })
             }
