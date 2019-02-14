@@ -18,7 +18,7 @@
         <div class="under-construction bottom">
             Our website is currently under construction while we prioritise clients.
         </div>
-        <app-scroll-to v-show="next" el=".next-section" />
+        <app-scroll-to v-show="next" :el="nextEl" />
     </section>
 </template>
 
@@ -46,6 +46,11 @@ export default {
             type: Boolean,
             required: false,
             default: true
+        },
+        nextEl: {
+            type: String,
+            required: false,
+            default: '.next-section'
         }
     },
     data() {
@@ -126,7 +131,7 @@ export default {
     opacity: 0;
     transition: all 1s;
     transition-delay: 1.5s;
-    transform: translate(-100%, 20%) rotate(-30deg);
+    transform: translate(-100%, 20%) rotate(-30deg) scale(0.5);
 }
 
 .header {

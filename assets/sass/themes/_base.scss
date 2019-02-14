@@ -41,7 +41,8 @@ a {
     }
 }
 
-.u-line-highlight {
+.u-line-highlight,
+.u-line-highlight-left {
     &:after {
         background-color: $color-secondary;
     }
@@ -116,10 +117,9 @@ a {
     }
 }
 
-
 .header,
 .services,
 .featured,
 .next-page {
-    background-color: $color-background
+    background-color: $color-background;
 }

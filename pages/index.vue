@@ -150,6 +150,7 @@ export default {
 
     &.out {
         opacity: 0;
+        transform: scale(0.8);
         visibility: hidden;
     }
 }
@@ -178,6 +179,7 @@ export default {
         transition: all 1s;
         transition-delay: 0.5s;
         opacity: 0;
+        transform: scale(1.2);
 
         @include respond('ipadPro') {
             width: 20rem;
@@ -185,12 +187,13 @@ export default {
 
         &.in {
             opacity: 1;
+            transform: scale(1);
         }
     }
 
     &__title {
         transition: all 1s;
-        transition-delay: 0.7s;
+        transition-delay: 0.9s;
         opacity: 0;
         transform: translateY(20px);
         &.in {
@@ -201,7 +204,7 @@ export default {
 
     &__statement {
         transition: all 1s;
-        transition-delay: 0.9s;
+        transition-delay: 1.1s;
         opacity: 0;
         transform: translateY(20px);
         &.in {
@@ -250,7 +253,7 @@ export default {
     opacity: 0;
     transition: all 1s;
     transition-delay: 0.5s;
-    transform: translate(-100%, 20%) rotate(-30deg);
+    transform: translate(-100%, 20%) rotate(-30deg) scale(0.2);
 
     &.in {
         opacity: 1;
