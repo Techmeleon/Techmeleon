@@ -27,9 +27,6 @@ module.exports = {
             }
         ]
     },
-    env: {
-        baseUrl: 'https://www.techmeleon.co.uk' || 'http://localhost:3000'
-    },
     /*
   ** Customize the progress-bar color
   */
