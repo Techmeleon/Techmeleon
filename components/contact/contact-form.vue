@@ -175,9 +175,7 @@
                 class="contact-form__section"
             >
                 <div class="please-wait" />
-                <div class="contact-form__section__title finished">
-                    {{ returnMessage }}
-                </div>
+                <div class="contact-form__section__title finished" v-html="returnMessage" />  <!-- eslint-disable-line -->
             </div>
         </transition>
     </div>
@@ -212,7 +210,7 @@ export default {
             this.sectionNumber += 1
             if (!this.inprogress) {
                 const _this = this
-                const url = '/api/contact'
+                const url = process.env.baseUrl + '/api/contact'
                 this.inprogress = true
                 this.$axios
                     .$post(url, { data: this.contact })
