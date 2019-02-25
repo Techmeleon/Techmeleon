@@ -11,57 +11,73 @@
                 </div>
 
                 <form class="contact-form__form">
-                    <div class="contact-form__group">
+                    <div class="contact-form__group" :class="{ 'contact-form__group--error': $v.name.$error }">
                         <input
                             id="name"
-                            v-model="contact.name"
+                            v-model.trim="$v.name.$model"
                             name="name"
                             placeholder="Name*"
                             type="text"
                             required
                             class="contact-form__input"
+                            title="Your name"
                         >
                         <label for="name" class="contact-form__label">
                             Name*
+                            <span v-if="$v.name.$error"> - </span> <!-- eslint-disable-line -->
+                            <span v-if="!$v.name.required" class="contact-form__input--error">
+                                Field is required
+                            </span> <!-- eslint-disable-line -->
+                            <span v-if="!$v.name.minLength" class="contact-form__input--error">
+                                Name must have at least {{ $v.name.$params.minLength.min }} letters.
+                            </span>
                         </label>
                     </div>
                     <div class="contact-form__group">
                         <input
                             id="company"
-                            v-model="contact.company"
+                            v-model.trim="$v.company.$model"
                             name="company"
                             placeholder="Company"
                             type="text"
                             class="contact-form__input"
+                            title="Your Company name"
                         >
                         <label for="company" class="contact-form__label">
                             Company
                         </label>
                     </div>
-                    <div class="contact-form__group">
+                    <div class="contact-form__group" :class="{ 'contact-form__group--error': $v.email.$error }">
                         <input
                             id="email"
-                            v-model="contact.email"
+                            v-model.trim="$v.email.$model"
                             name="email"
                             placeholder="Email*"
                             required
-                            type="text"
+                            type="email"
                             class="contact-form__input"
+                            title="Your Email"
                         >
                         <label for="email" class="contact-form__label">
                             Email*
+                            <span v-if="$v.email.$error"> - </span> <!-- eslint-disable-line -->
+                            <span v-if="!$v.email.required" class="contact-form__input--error">
+                                Field is required
+                            </span> <!-- eslint-disable-line -->
+                            <span v-if="!$v.email.email" class="contact-form__input--error">
+                                Must be a valid email address
+                            </span> <!-- eslint-disable-line -->
                         </label>
                     </div>
                     <div class="contact-form__group">
                         <input
                             id="telephone"
-                            v-model="contact.telephone"
-                            type="tel"
-                            pattern="[0-9]{5} [0-9]{6}"
-                            maxlength="11"
+                            v-model.trim="$v.telephone.$model"
+                            type="text"
                             name="telephone"
                             placeholder="Telephone"
                             class="contact-form__input"
+                            title="Your Telephone number"
                         >
                         <label for="telephone" class="contact-form__label">
                             Telephone
@@ -73,7 +89,7 @@
                     <div class="back hide" @click="sectionNumber -= 1">
                         <span>Back</span>
                     </div>
-                    <div class="forward" @click="sectionNumber += 1">
+                    <div class="forward" :disabled="formInvalid" @click="!formInvalid ? sectionNumber += 1 : sectionNumber -= 0">
                         <span>Next</span>
                     </div>
                 </div>
@@ -90,10 +106,11 @@
                     <div class="contact-form__group">
                         <select
                             id="solution"
-                            v-model="contact.solution"
-                            name="solution"
+                            v-model.trim="$v.service.$model"
+                            name="service"
                             placeholder="Select a solution"
                             class="contact-form__input"
+                            title="Select a solution"
                         >
                             <option value disabled selected>
                                 Select a solution
@@ -110,9 +127,10 @@
                     <div class="contact-form__group">
                         <select
                             id="budget"
-                            v-model="contact.budget"
+                            v-model.trim="$v.budget.$model"
                             name="budget"
                             class="contact-form__input"
+                            title="Select a budget"
                         >
                             <option value disabled selected>
                                 Select your budget range
@@ -130,9 +148,10 @@
                     </div>
                     <div class="contact-form__group textarea">
                         <textarea
-                            v-model="contact.message"
+                            v-model.trim="$v.message.$model"
                             rows="4"
                             class="contact-form__input"
+                            title="Leave us a message"
                         >Describe your project and objectives</textarea>
                     </div>
                 </form>
@@ -155,10 +174,10 @@
                     Almost done!<br>Just book a callback time if you wish
                 </div>
                 <datetime
-                    v-model="contact.date"
+                    v-model.trim="$v.date.$model"
                     type="datetime"
-                    :class="{off: contact.date !== ''}"
-                    title="Pick a date & time 2"
+                    :class="{off: date !== ''}"
+                    title="Book a date & time"
                 />
                 <div class="next">
                     <div class="back" @click="sectionNumber -= 1">
@@ -182,27 +201,47 @@
 </template>
 
 <script>
+import { required, minLength, email } from 'vuelidate/lib/validators'
+
 export default {
     data() {
         return {
             sectionNumber: 1,
             inprogress: false,
-            contact: {
-                name: '',
-                company: '',
-                email: '',
-                telephone: '',
-                solution: '',
-                budget: '',
-                message: '',
-                date: ''
-            },
-            returnMessage: 'Sent!<br>We will send a confirmation Soon!'
+            returnMessage: 'Sent!<br>We will send a confirmation Soon!',
+            name: '',
+            email: '',
+            company: '',
+            telephone: '',
+            service: '',
+            budget: '',
+            message: '',
+            date: ''
         }
+    },
+    validations: {
+        name: {
+            required,
+            minLength: minLength(4)
+        },
+        email: {
+            required,
+            email
+        },
+        company: {},
+        telephone: {},
+        service: {},
+        budget: {},
+        message: {},
+        date: {}
     },
     computed: {
         getSolutions() {
             return this.$store.state.solutions.list
+        },
+        formInvalid() {
+            this.$v.$touch()
+            return this.$v.$invalid
         }
     },
     methods: {
@@ -211,13 +250,23 @@ export default {
             if (!this.inprogress) {
                 const _this = this
                 const url =
-                    window.location.protocol +
-                    '//' +
-                    window.location.hostname +
+                    window.location.href.replace(window.location.pathname, '') +
                     '/api/contact'
                 this.inprogress = true
+                console.log(url) //eslint-disable-line
                 this.$axios
-                    .$post(url, { data: this.contact })
+                    .$post(url, {
+                        data: {
+                            name: this.name,
+                            email: this.email,
+                            company: this.company,
+                            telephone: this.telephone,
+                            service: this.service,
+                            budget: this.budget,
+                            message: this.message,
+                            date: this.date
+                        }
+                    })
                     .then(response => {
                         console.log(response) //eslint-disable-line
                         if (response.message !== 'Success') {

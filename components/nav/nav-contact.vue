@@ -3,6 +3,7 @@
         class="nav__contact"
         :class="{big: forSlide}"
         to="/contact"
+        @click.native="changeColors()"
     >
         Contact
     </nuxt-link>

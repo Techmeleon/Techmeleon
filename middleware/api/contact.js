@@ -1,7 +1,9 @@
 import express from 'express'
-// import xssFilters from 'xss-filters'
-// import validator from 'validator'
+import xssFilters from 'xss-filters'
+import validator from 'validator'
 import nodemailer from 'nodemailer'
+import bodyParser from 'body-parser'
+
 const config = {
     email: {
         service: 'Outlook365',
@@ -11,102 +13,122 @@ const config = {
         }
     },
     other: {
-        deliverEmail: 'hello@techmeleon.co.uk, james.williams@techmeleon.co.uk'
+        deliverEmail: 'hello@techmeleon.co.uk'
     }
 }
 
 const app = express()
 
 app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.post('/', (req, res) => {
-    // const attributes = [
-    //     'name',
-    //     'company',
-    //     'email',
-    //     'telephone',
-    //     'solution',
-    //     'budget',
-    //     'message',
-    //     'date'
-    // ]
+    const attributes = [
+        'name',
+        'company',
+        'email',
+        'telephone',
+        'service',
+        'budget',
+        'message',
+        'date'
+    ]
 
     // Map each attribute name to the validated and sanitized equivalent (false if validation failed)
-    // const sanitizedAttributes = attributes.map(n =>
-    //     validateAndSanitize(n, req.body[n])
-    // )
+    const sanitizedAttributes = attributes.map(n =>
+        validateAndSanitize(n, req.body.data[n])
+    )
 
     // True if some of the attributes new values are false -> validation failed
-    // const someInvalid = sanitizedAttributes.some(r => !r)
+    const someInvalid = sanitizedAttributes.some(r => {
+        if (r !== '') {
+            return !r
+        } else {
+            return false
+        }
+    })
 
-    // if (someInvalid) {
-    //     // Throw a 422 with a neat error message if validation failed
-    //     return res
-    //         .status(422)
-    //         .json({ error: 'Ugh.. That looks unprocessable!' })
-    // }
-    const result = sendMail(req.body.data)
+    if (someInvalid) {
+        // Throw a 422 with a neat error message if validation failed
+        return res
+            .status(422)
+            .json({ error: 'Ugh.. That looks unprocessable!' })
+    }
+
+    // send mail
+    const result = sendMail(...sanitizedAttributes)
 
     if (result) {
         res.status(200).json({ message: 'Success' })
     } else {
-        res.status(422).json({ message: 'Ugh.. That looks unprocessable!' })
+        res.status(422).json({ message: 'Failed!' })
     }
 })
-// const rejectFunctions = new Map([
-//     ['name', v => v.length < 4],
-//     ['email', v => !validator.isEmail(v)]
-// ])
-// const validateAndSanitize = (key, value) => {
-//     // If map has key and function returns false, return sanitized input. Else, return false
-//     return (
-//         rejectFunctions.has(key) &&
-//         !rejectFunctions.get(key)(value) &&
-//         xssFilters.inHTMLData(value)
-//     )
-// }
 
-const sendMail = data => {
-    console.log(config.email) //eslint-disable-line
+const rejectFunctions = new Map([
+    ['name', v => v.length < 4],
+    ['company', v => false],
+    ['email', v => !validator.isEmail(v)],
+    ['telephone', v => false],
+    ['service', v => false],
+    ['budget', v => false],
+    ['message', v => false],
+    ['date', v => false]
+])
+const validateAndSanitize = (key, value) => {
+    // If map has key and function returns false, return sanitized input. Else, return false
+    return (
+        rejectFunctions.has(key) &&
+        !rejectFunctions.get(key)(value) &&
+        xssFilters.inHTMLData(value)
+    )
+}
+
+const sendMail = (
+    name,
+    company,
+    email,
+    telephone,
+    service,
+    budget,
+    message,
+    date
+) => {
     const transporter = nodemailer.createTransport(config.email)
+
+    const subject =
+        (company === '' ? `${name}` : `${name} @ ${company}`) +
+        ' wishes to make contact!'
+
+    const text = `Dear Techmeleon,\r\n
+    email: ${email}\r\n
+    ${telephone === '' ? '' : 'Tel: ' + telephone}\r\n
+    ${service === '' ? '' : 'Solution: ' + service}\r\n
+    ${budget === '' ? '' : 'Budget: ' + budget}\r\n
+    ${message === '' ? '' : 'Message: ' + message}\r\n
+    ${date === '' ? '' : 'Appointment: ' + date}\r\n`
+
+    const html =
+        'Dear Techmeleon,<br><br>' +
+        '<b>' +
+        (company === '' ? `${name}` : `${name} @ ${company}`) +
+        ' wishes to make contact!</b><br><br>' +
+        `<b>Email: </b><a href="emailto:${email}">${email}</a><br>` +
+        (telephone === ''
+            ? ''
+            : `<b>Tel: </b><a href="tel:${telephone}">${telephone}</a><br>`) +
+        (service === '' ? '' : `<b>Solution: </b>${service}<br>`) +
+        (budget === '' ? '' : `<b>Budget: </b>${budget}<br>`) +
+        (date === '' ? '' : `<b>Appointment: </b>${date}<br>`) +
+        (message === '' ? '' : `<b>Message: </b>${message}<br>`)
 
     const emailDetails = {
         from: config.email.auth.user,
         to: config.other.deliverEmail,
-        subject:
-            data.company === ''
-                ? `${data.name}`
-                : `${data.name} @ ${data.company}` + ' wishes to make contact!',
-        text: `Dear Techmeleon,\n\rI can be contact on the following email: ${
-            data.email
-        }
-        ${data.telephone === '' ? '' : ' or Tel: ' + data.telephone}\r\n
-        ${data.solution === '' ? '' : 'Solution: ' + data.solution}\r\n
-        ${data.budget === '' ? '' : 'Budget: ' + data.budget}\r\n
-        ${data.message === '' ? '' : 'Message: ' + data.message}\r\n
-        ${data.date === '' ? '' : 'Appointment: ' + data.date}\r\n
-        `,
-        html:
-            'Dear Techmeleon,<br><br>' +
-            '<b>' +
-            (data.company === ''
-                ? `${data.name}<br>`
-                : `${data.name} @ ${data.company}` +
-                  ' wishes to make contact!</b><br><br>') +
-            `<b>Email: </b><a href="emailto:${data.email}">${
-                data.email
-            }</a><br>` +
-            (data.telephone === ''
-                ? ''
-                : `<b>Tel: </b><a href="tel:${data.telephone}">${
-                      data.telephone
-                  }</a><br>`) +
-            (data.solution === ''
-                ? ''
-                : `<b>Solution: </b>${data.solution}<br>`) +
-            (data.budget === '' ? '' : `<b>Budget: </b>${data.budget}<br>`) +
-            (data.date === '' ? '' : `<b>Appointment: </b>${data.date}<br>`) +
-            (data.message === '' ? '' : `<b>Message: </b>${data.message}<br>`)
+        subject: subject,
+        text: text,
+        html: html
     }
 
     return transporter

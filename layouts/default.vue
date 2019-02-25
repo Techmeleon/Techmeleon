@@ -42,7 +42,6 @@ export default {
     },
     data() {
         return {
-            theme: 'dark',
             nav: {
                 open: false,
                 hide: {
@@ -56,12 +55,12 @@ export default {
                     },
                     others: [
                         {
-                            name: 'Projects',
-                            path: '/projects'
-                        },
-                        {
                             name: 'Solutions',
                             path: '/solutions'
+                        },
+                        {
+                            name: 'Projects',
+                            path: '/projects'
                         },
                         {
                             name: 'Who',
@@ -73,6 +72,14 @@ export default {
                     }
                 }
             }
+        }
+    },
+    computed: {
+        getBoomColor() {
+            return this.$store.state.colors
+        },
+        theme() {
+            return this.$store.state.theme
         }
     },
     mounted() {

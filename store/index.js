@@ -1,5 +1,15 @@
 const state = () => {
-    return {}
+    return {
+        colors: {
+            bgColor: '#d3b300',
+            color: '#FFFFFF'
+        },
+        defaultColors: {
+            bgColor: '#141414',
+            color: '#e6eeed'
+        },
+        theme: 'dark'
+    }
 }
 
 const mutations = {
@@ -14,11 +24,18 @@ const mutations = {
     },
     setPolicies(state, policies) {
         state.policies.list = policies
+    },
+    setBoomColor(state, colors) {
+        state.colors = colors
+    },
+    setTheme(state, theme) {
+        state.theme = theme
     }
 }
 
 const actions = {
     nuxtServerInit(vuexContext, context) {
+        vuexContext.commit('setBoomColor', vuexContext.state.defaultColors)
         const url = 'https://techmeleon-website.firebaseio.com/'
 
         const getSolutions = () => {
@@ -68,6 +85,12 @@ const actions = {
             getPages(),
             getPolicies()
         ])
+    },
+    updateBoomColor(vuexContext, colors) {
+        vuexContext.commit('setBoomColor', colors)
+    },
+    updateTheme(vuexContext, theme) {
+        vuexContext.commit('setTheme', theme)
     }
 }
 

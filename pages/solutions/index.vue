@@ -24,6 +24,9 @@ export default {
         pageData() {
             return this.$store.getters['pages/page']('Solutions')[0]
         }
+    },
+    mounted() {
+        this.setTheme('dark')
     }
 }
 </script>

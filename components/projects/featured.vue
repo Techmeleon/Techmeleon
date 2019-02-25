@@ -1,10 +1,11 @@
 <template>
-    <div v-in-viewport.once="-200" class="projects">
+    <div v-in-viewport.once="-100" class="projects">
         <nuxt-link
             v-for="(project,index) in featured"
             :key="index"
             :to="'projects/' + project.route"
             class="project"
+            @click.native="changeColors(project.colors)"
         >
             <div
                 class="project__container"
@@ -30,6 +31,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+
 export default {
     computed: mapGetters({
         featured: 'projects/front'
@@ -67,12 +69,12 @@ export default {
 }
 @for $i from 1 through 4 {
     .project:nth-child(#{$i}) {
-        transition-delay: #{($i * 0.3)}s;
+        transition-delay: #{($i * 0.1)}s;
     }
 }
 .project {
     opacity: 0;
-    transform: translate(0, 300px);
+    transform: translate(0, 100px);
     transition: all 1s;
 
     &:nth-child(3),

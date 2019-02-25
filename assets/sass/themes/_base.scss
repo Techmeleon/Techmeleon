@@ -26,7 +26,6 @@ a {
     color: $color-text;
     background-color: $color-background;
     min-height: 100vh;
-
     &__top {
         position: absolute;
         top: 0;
@@ -49,7 +48,7 @@ a {
 }
 
 .navigation {
-    background-color: $color-background;
+    background-color: transparent;
 }
 
 .nav__link {
@@ -122,4 +121,20 @@ a {
 .featured,
 .next-page {
     background-color: $color-background;
+}
+
+.project__page {
+    .project {
+        &__header {
+        }
+        &__section {
+            &.inverse {
+                background-color: $color-background-inverse;
+                color: $color-text-inverse;
+                & a {
+                    color: $color-text-inverse;
+                }
+            }
+        }
+    }
 }

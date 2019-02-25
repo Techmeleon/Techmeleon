@@ -1,16 +1,15 @@
 <template>
-    <main class="page" @mousemove="coords">
+    <main class="page page__home" @mousemove="coords">
         <div class="page__top" />
-
-        <div v-waypoint="{ active: true, callback: waypointHeader, options: intersectionOptions }" class="wp-trigger" style="{top: 50%}" />
         <header
+            id="header"
             class="header"
             :class="{out: waypoint > 0}"
         >
             <div class="header__container u-relative">
                 <section class="hero">
                     <div class="hero__logo" :class="{in: waypoint === 0 }">
-                        <Logo class="logo" :x="x" :y="y" :activate-the-eye="true" />
+                        <Logo class="logo" :x="x" :y="y" :activate-the-eye="true" :style="{transform: 'rotate(' + logoRotate + ')'}" />
                     </div>
                     <h1 :class="{in: waypoint === 0 }" class="hero__title">
                         <Techmeleon class="header__big" />
@@ -33,7 +32,6 @@
                 :class="{in: waypoint === 1 }"
             />
             <div
-                v-waypoint="{ active: true, callback: waypointServices, options: intersectionOptions }"
                 class="services__container"
             >
                 <Solutions />
@@ -66,6 +64,7 @@ export default {
             x: 0,
             y: 0,
             scrollY: 0,
+            scrollHeight: 0,
             waypoint: -1,
             intersectionOptions: {
                 root: null,
@@ -84,17 +83,29 @@ export default {
     computed: {
         pageData() {
             return this.$store.getters['pages/page']('Landing')[0]
+        },
+        logoRotate() {
+            return (
+                Math.min(this.scrollY / (this.scrollHeight * 0.4) * 300, 300) + //eslint-disable-line
+                'deg'
+            )
         }
     },
     mounted() {
+        this.setTheme('dark')
         document.addEventListener('mousemove', this.coords)
         document.addEventListener('touchstart', this.coords)
         document.addEventListener('touchmove', this.coords)
+        window.addEventListener('scroll', this.handleScroll)
+        setTimeout(() => {
+            this.handleScroll()
+        }, 300)
     },
     destroyed() {
         document.removeEventListener('mousemove', this.coords)
         document.removeEventListener('touchstart', this.coords)
         document.removeEventListener('touchmove', this.coords)
+        window.removeEventListener('scroll', this.handleScroll)
     },
     methods: {
         coords(e) {
@@ -114,14 +125,15 @@ export default {
                 }
             }
         },
-        waypointServices({ going, direction }) {
-            if (direction === this.$waypointMap.DIRECTION_TOP) {
+        handleScroll() {
+            this.scrollY = window.scrollY
+            this.scrollHeight = document.getElementById('header').clientHeight
+
+            if (this.scrollY <= this.scrollHeight * 0.4) {
+                this.waypoint = 0
+            } else {
                 this.waypoint = 1
             }
-        },
-        waypointHeader({ going, direction }) {
-            console.log(direction + ' : ws triggered') //eslint-disable-line
-            this.waypoint = 0
         }
     }
 }
@@ -150,6 +162,7 @@ export default {
 
     &.out {
         opacity: 0;
+        transform-origin: 50% 0;
         transform: scale(0.8);
         visibility: hidden;
     }
@@ -180,6 +193,7 @@ export default {
         transition-delay: 0.5s;
         opacity: 0;
         transform: scale(1.2);
+        perspective: 1000px;
 
         @include respond('ipadPro') {
             width: 20rem;

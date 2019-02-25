@@ -39,6 +39,7 @@ export default {
         }
     },
     mounted() {
+        this.setTheme('dark')
         const policies = this.$store.getters['policies/policies']
         this.policies = policies
     }

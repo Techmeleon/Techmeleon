@@ -4,6 +4,12 @@
 @import 'abstracts/variables';
 @import 'themes/dark';
 @import 'themes/light';
+@import 'themes/cabs';
+@import 'themes/som';
+@import 'themes/sop';
+@import 'themes/spa';
+@import 'themes/o365';
+@import 'themes/solc';
 @import 'base/base';
 @import 'base/typography';
 @import 'base/utilities';
@@ -17,3 +23,5 @@
 @import 'pages/error';
 @import 'pages/policy';
 @import 'pages/who';
+@import 'pages/project';
+@import 'pages/projects';

@@ -9,6 +9,7 @@
             :key="nav.path"
             class="nav__slide__link"
             :to="nav.path"
+            @click.native="changeColors()"
         >
             <span>{{ nav.name }}</span>
         </nuxt-link>

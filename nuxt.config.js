@@ -81,12 +81,13 @@ module.exports = {
         '~/plugins/vue-moment',
         '~/plugins/vue-in-viewport',
         '~/plugins/vue-datetime',
+        '~/plugins/vue-lidate',
+        '~/plugins/vue-scrollto',
+        '~/plugins/vue-fontawesome',
         {
             src: '~/plugins/vue-carousel-3d',
             ssr: false
         },
-        '~/plugins/vue-scrollto',
-        '~/plugins/vue-fontawesome',
         {
             src: '~/plugins/vue-waypoint',
             ssr: false

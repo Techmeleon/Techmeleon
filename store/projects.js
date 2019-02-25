@@ -9,7 +9,7 @@ const actions = {}
 const getters = {
     project: state => {
         return keyword =>
-            state.list.projects.filter(item => {
+            state.list.filter(item => {
                 return item.route === keyword
             })
     },
@@ -17,6 +17,15 @@ const getters = {
         return state.list.filter(item => {
             return item.category === 'Featured'
         })
+    },
+    allProjects(state) {
+        return state.list
+    },
+    projectsBySolution: state => {
+        return keyword =>
+            state.list.filter(item => {
+                return item.solutions.indexOf(keyword) >= 0
+            })
     }
 }
 

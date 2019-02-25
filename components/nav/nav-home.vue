@@ -2,6 +2,7 @@
     <nuxt-link
         class="nav__home"
         to="/"
+        @click.native="changeColors()"
     >
         <Techmeleon />
     </nuxt-link>

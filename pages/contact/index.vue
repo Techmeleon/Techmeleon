@@ -38,14 +38,14 @@
                     </h2>
 
                     <div class="contact__direct">
-                        <!-- <div class="contact__call">
-                            <a href="tel: +44800000000">
-                                <font-awesome-icon icon="mobile-alt" />  0800 000 000
-                            </a>
-                        </div> -->
                         <div class="contact__email">
                             <a href="mailto:hello@techmeleon.co.uk">
                                 <font-awesome-icon icon="envelope-open" />  hello@techmeleon.co.uk
+                            </a>
+                        </div>
+                        <div class="contact__call">
+                            <a href="tel: +448458050460">
+                                <font-awesome-icon icon="mobile-alt" />  0845 805 0460
                             </a>
                         </div>
                     </div>
@@ -89,6 +89,7 @@ export default {
         }
     },
     mounted() {
+        this.setTheme('dark')
         setTimeout(() => {
             this.animate = false
         }, 5000)

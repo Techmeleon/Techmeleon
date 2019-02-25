@@ -1,16 +1,27 @@
 <template>
-    <main class="page">
+    <main class="page page__projects">
         <div class="page__top" />
-        <Header :title="pageData.content.header" :caption="pageData.content.tag" :summary="pageData.content.subHeader" />
+        <Header :title="pageData.content.header" :caption="pageData.content.tag" :summary="pageData.content.subHeader" next-el=".projects" />
+        <div class="projects">
+            <div class="projects__title header__title">
+                For more detail on experience and past work,<br>
+                <nuxt-link to="/contact">
+                    contact us for a coffee!
+                </nuxt-link>
+            </div>
+            <Projects />
+        </div>
         <app-footer class="next-page" :next-page="{title: 'Who', link: '/about'}" />
     </main>
 </template>
 
 <script>
 import Header from '~/components/header'
+import Projects from '~/components/projects/list'
 export default {
     components: {
-        Header
+        Header,
+        Projects
     },
     data() {
         return {
@@ -31,6 +42,9 @@ export default {
         pageData() {
             return this.$store.getters['pages/page']('Projects')[0]
         }
+    },
+    mounted() {
+        this.setTheme('dark')
     }
 }
 </script>

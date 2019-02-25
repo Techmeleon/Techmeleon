@@ -15,7 +15,7 @@ const pages = [
             {
                 name: 'description',
                 content:
-                    'We provide digital solutions to provide creative, transparent and decision making ideas. Give us a call to analyse your requirements so we can provide the right solution to enhance your business.'
+                    'We provide digital solutions to provide creative, transparent and decision making ideas. Give us a call to analyse your requirements so we can provide the right tailored solution for you.'
             },
             {
                 name: 'keywords',
@@ -24,7 +24,7 @@ const pages = [
         ],
         content: {
             subHeader:
-                'Enhancing your business<br>with the technology of the future'
+                'Enhancing your business<br>with adaptable, effective solutions.'
         }
     },
     {
@@ -34,7 +34,7 @@ const pages = [
             {
                 name: 'description',
                 content:
-                    'Passionate & Focused. With over 12 years experience in business analysis, development and UX design. We are here to help you achieve your goals.'
+                    'Passionate & Focused. With over 13 years experience in business analysis, development and UX design. We are here to help you achieve your goals.'
             },
             {
                 name: 'keywords',
@@ -45,7 +45,7 @@ const pages = [
             tag: 'Passionate & Focused',
             header: 'Projects',
             subHeader:
-                'With over 12 years experience in business analysis, development and UX design. We are here to help you achieve your goals.'
+                'With over 13 years experience in business analysis, development and UX design. We are here to help you achieve your goals.'
         }
     },
     {
@@ -167,7 +167,7 @@ const pages = [
                     title: 'MATTHEW FLINT - CO-FOUNDER',
                     tag: 'Gives too much friendly advice.',
                     content:
-                        '<p><b>A force of nature  who has run a successful I.T. Consultantancy business for over 15 years.</b></p><p>Matt has managed and run his own I.T. Consultantancy company and has been part of the journey of many successful startup companies from small one man offices to goliaths they are now.</p><p>Outside of work he manages his broad of children like a well oiled machine, pumps iron and is always extremely modest.</p>',
+                        '<p><b>A force of nature  who has run a successful I.T. consultancy business for over 15 years.</b></p><p>Matt has managed and run his own I.T. consultancy company and has been part of the journey of many successful startup companies from small one man offices to goliaths they are now.</p><p>Outside of work he manages his broad of children like a well oiled machine, pumps iron and is always extremely modest.</p>',
                     images: [
                         {
                             src: '/who/Matt.jpg',
@@ -289,11 +289,17 @@ const projects = [
         summary: 'Making Buildings Beautiful Again.',
         category: 'Featured',
         solutions: ['Creative Design'],
-        tags: ['Web development'],
+        tags: ['Web development', 'SEO'],
         feature: '/projects/cabs/feature.png',
         colors: {
             bgColor: '#0085AB',
             color: '#FFFFFF'
+        },
+        intro: {
+            title: 'A website worthy of their success.',
+            text:
+                "CABS commissioned Techmeleon to do a full redesign of their website with the goal of matching there standard for quality. Stuart at CABS gave us our first piece of work at Techmeleon and we wanted to return that trust with giving him a website worthy of CABS and Stuart's success.",
+            image: 'https://picsum.photos/1200/765/'
         }
     },
     {
@@ -307,6 +313,18 @@ const projects = [
         colors: {
             bgColor: '#82b968',
             color: '#FFFFFF'
+        },
+        intro: {
+            title: 'Local Application in 6 weeks.',
+            text:
+                'SO Modular required Techmeleon to absorb all their knowledge of timber frame design and produce an application that could accurately predict the total cost of building that design. Due to the time contraints, we recommended a local system which uses an existing onsite server for the RDBMS and leveraged existing EUC software.',
+            image: 'https://picsum.photos/1200/768/'
+        },
+        section1: {
+            title: 'Accuracy is everything.',
+            text:
+                'Seven Oaks Pricing (SOP) takes measurements of a design that are entered into the system and produces a full breakdown of each material, man hour & additional cost to build each component.',
+            image: 'https://picsum.photos/1200/763/'
         }
     },
     {
@@ -314,25 +332,73 @@ const projects = [
         route: 'so-modular',
         summary: 'The Timber Frame Specialists',
         category: 'Featured',
-        solutions: ['Creative Design'],
-        tags: ['Web development', 'Branding'],
+        solutions: ['Creative Design', 'Digital Marketing'],
+        tags: ['Web development', 'Branding', 'SEO'],
         feature: '/projects/som/feature.png',
         colors: {
             bgColor: '#82b948',
             color: '#FFFFFF'
+        },
+        intro: {
+            title: 'New brand, new website.',
+            text:
+                'Seven Oaks Modular a timber frame specialist commissioned Techmeleon to design a new brand and website to demonstrate what they are capable of. With drone footage and professional photography being key aspect of the design, it was important to show the quality of the products and services offered by SOM.',
+            image: 'https://picsum.photos/1200/770/'
         }
     },
     {
         name: 'Swansea Property',
-        route: 'cabs-group',
-        summary: 'Making Buildings Beautiful Again',
+        route: 'swansea-property-agents',
+        summary: 'One design, two websites',
         category: 'Featured',
-        solutions: ['Creative Design'],
-        tags: ['Web development'],
+        solutions: ['Creative Design', 'Digital Marketing'],
+        tags: ['Web development', 'SEO'],
         feature: '/projects/spa/feature.png',
         colors: {
             bgColor: '#d3b300',
             color: '#FFFFFF'
+        },
+        intro: {
+            title: 'A complete redesign of their two websites.',
+            text:
+                'Initially brought in to consult regarding SEO for their two websites, we explained the importance of having a website that is designed and built for optimal SEO. Swansea Property Agents requested that both their websites be rebuilt with simular designs, but different on branding.',
+            image: 'https://picsum.photos/1200/768/'
+        }
+    },
+    {
+        name: 'Office 365 Migration',
+        route: 'office-365-migration',
+        summary: 'Hundreds of accounts',
+        category: 'Case Study',
+        solutions: ['Cloud Migration'],
+        tags: ['Exchange to Office 365'],
+        feature: '/projects/o365/feature.png',
+        colors: {
+            bgColor: '#c0e8fa',
+            color: '#2b2b2b'
+        },
+        intro: {
+            title: 'Exchange to Office 365 migration.',
+            text: 'Intro coming soon!',
+            image: 'https://picsum.photos/1200/761/'
+        }
+    },
+    {
+        name: 'SO Life Cycle',
+        route: 'so-life-cycle',
+        summary: 'Tracking the life of each project',
+        category: 'Upcoming',
+        solutions: ['Business Analysis', 'App Development', 'Data Clarity'],
+        tags: ['Life Cycle', 'Cloud app', 'Transparency'],
+        feature: '/projects/solc/feature.png',
+        colors: {
+            bgColor: '#86e2d5',
+            color: '#2b2b2b'
+        },
+        intro: {
+            title: 'Bringing clarity to Seven Oaks life cycles.',
+            text: 'Inforation coming soon!',
+            image: 'https://picsum.photos/1200/761/'
         }
     }
 ]

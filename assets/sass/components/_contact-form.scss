@@ -32,6 +32,9 @@
         &.textarea {
             grid-column: 1 / span 2;
         }
+        &--error {
+            border: 1px solid red;
+        }
     }
     .vdatetime {
         margin-top: 2rem;
@@ -96,8 +99,11 @@
         &::-webkit-input-placeholder {
             color: $color-text-inverse;
         }
+        &--error {
+            color: red;
+        }
     }
-    &__input:placeholder-shown + &__label:not(&__label--textarea) {
+    &__input:placeholder-shown+&__label:not(&__label--textarea) {
         opacity: 0;
         visibility: hidden;
         padding: 1rem 1.5rem;
@@ -115,6 +121,7 @@
         z-index: 1000;
         padding-left: 1.5rem;
         padding-top: 0.1rem;
+        width: 100%;
     }
     .next {
         margin-top: 2rem;
