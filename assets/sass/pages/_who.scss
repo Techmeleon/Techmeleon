@@ -92,6 +92,7 @@
 
         &.animate {
             & .who__image:nth-child(2) {
+                border: 1rem solid transparent;
                 animation: opacityLoop 10s infinite ease-in-out;
             }
         }
@@ -100,6 +101,7 @@
     &__image {
         width: 100%;
         height: auto;
+        border: 1rem solid white;
         // box-shadow: 0 0 15px #aaa;
 
         @include respond('ipadPro') {
